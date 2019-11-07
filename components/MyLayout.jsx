@@ -26,6 +26,12 @@ export const Header = () => {
       <Link href={`/post/[postId]`} as={`/post/${i}`}>
         <button>post page</button>
       </Link>
+      {
+      /**
+      * However, if a query and route param name are the same, route parameters will override the matching query params.
+      * For example, /post/abc?pid=bcd will have the query object: { pid: 'abc' }.
+      */
+      }
       {"  "}
       <span>
         Click{" "}

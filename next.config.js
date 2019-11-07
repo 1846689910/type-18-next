@@ -16,9 +16,9 @@ module.exports = {
       "/": { page: "/" },
       "/about": { page: "/about" },
       "/secondary/my-greeting": { page: "/secondary/my-greeting" },
-      "/post/*": { page: "/post/[postId]" },
-      "/pipelines/*": { page: "/pipelines/[pipelineId]" },
-      "/pipelines/*/states/*": {
+      "/post/[postId]": { page: "/post/[postId]" },
+      "/pipelines/[pipelineId]": { page: "/pipelines/[pipelineId]" },
+      "/pipelines/[pipelineId]/states/[stateId]": {
         page: "/pipelines/[pipelineId]/states/[stateId]"
       }
     };
