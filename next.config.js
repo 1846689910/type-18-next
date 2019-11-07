@@ -1,17 +1,12 @@
 const fetch = require("isomorphic-unfetch");
 
-const getShows = async () => {
-  const data = await fetch("https://api.tvmaze.com/search/shows?q=batman");
-  return (await data.json()).map(x => x.show);
-};
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true"
+});
 
-module.exports = {
+module.exports = withBundleAnalyzer({
+  distDir: "dist",
   exportPathMap: async () => {
-    // const shows = (await getShows()).reduce((p, v) => {
-    //   p[`/post/${v.id}`] = { page: "/post", query: { slug: v.id } };
-    //   return p;
-    // }, {});
-
     return {
       "/": { page: "/" },
       "/about": { page: "/about" },
@@ -23,4 +18,4 @@ module.exports = {
       }
     };
   }
-};
+});
