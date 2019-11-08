@@ -9,7 +9,7 @@
     "start": "next start -p $PORT",
     "build": "next build",
     "export": "next export",
-    "build-export": "next build; next export",
+    "be": "next build; next export",
     "analyze": "cross-env ANALYZE=true next build"
   },
   "keywords": [],

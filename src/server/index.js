@@ -10,6 +10,7 @@ const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
   const server = express();
+  server.get("/abc", (req, res) => res.send("abc"));
   server.use(handle);
   // server.get("/secondary/greeting", (req, res) => {
   //   app.render(req, res, "/secondary/greeting");

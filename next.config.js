@@ -1,11 +1,8 @@
-const fetch = require("isomorphic-unfetch");
-
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true"
 });
 
 module.exports = withBundleAnalyzer({
-  distDir: "dist",
   exportPathMap: async () => {
     return {
       "/": { page: "/" },
