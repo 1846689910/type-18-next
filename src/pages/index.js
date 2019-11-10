@@ -3,11 +3,13 @@ import MyLayout from "../client/components/MyLayout";
 import fetch from "isomorphic-unfetch";
 import Markdown from "react-markdown";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
 const Index = props => {
   const { shows, url } = props;
   console.log(shows);
-  console.log(url); // back, push, pathname, replace
+  const router = useRouter();
+  console.log(router);  // pathname
   const DemoDynamic = dynamic(() => import("../client/components/Demo1"));
   return (
     <MyLayout>
