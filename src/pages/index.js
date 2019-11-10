@@ -1,4 +1,5 @@
-import MyLayout from "../src/client/components/MyLayout";
+import { connect } from "react-redux";
+import MyLayout from "../client/components/MyLayout";
 import fetch from "isomorphic-unfetch";
 import Markdown from "react-markdown";
 import dynamic from "next/dynamic";
@@ -7,11 +8,11 @@ const Index = props => {
   const { shows, url } = props;
   console.log(shows);
   console.log(url); // back, push, pathname, replace
-  const DemoDynamic = dynamic(() => import("../src/client/components/Demo1"));
+  const DemoDynamic = dynamic(() => import("../client/components/Demo1"));
   return (
     <MyLayout>
       <p>I am index page</p>
-      <DemoDynamic/>
+      <DemoDynamic />
       <div>
         <Markdown
           source={`
@@ -32,7 +33,7 @@ And here's the content.
       `}</style>
       <style jsx global>{`
         .markdown {
-          font-family: 'Arial';
+          font-family: "Arial";
         }
         .markdown a {
           text-decoration: none;
@@ -61,4 +62,4 @@ Index.getInitialProps = async function(context) {
     shows: data.map(entry => entry.show)
   };
 };
-export default Index;
+export default connect()(Index);
