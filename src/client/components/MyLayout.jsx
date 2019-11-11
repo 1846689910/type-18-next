@@ -13,7 +13,7 @@ export const Header = () => {
   i++;
   return (
     <div>
-      <img src="/electrode.png" alt="electrode"/>
+      <img src="/electrode.png" alt="electrode" />
       <Link href="/about">
         <button title="About Page">About Page</button>
       </Link>
@@ -26,12 +26,10 @@ export const Header = () => {
       <Link href={`/post/[postId]`} as={`/post/${i}`}>
         <button>post page</button>
       </Link>
-      {
-      /**
-      * However, if a query and route param name are the same, route parameters will override the matching query params.
-      * For example, /post/abc?pid=bcd will have the query object: { pid: 'abc' }.
-      */
-      }
+      {/**
+       * However, if a query and route param name are the same, route parameters will override the matching query params.
+       * For example, /post/abc?pid=bcd will have the query object: { pid: 'abc' }.
+       */}
       {"  "}
       <span>
         Click{" "}
@@ -41,9 +39,21 @@ export const Header = () => {
         to read more
       </span>
       {"  "}
-      <Link href="/secondary/my-greeting"><a>to greeting</a></Link>
-      <Link href="/pipelines/[pipelineId]" as="/pipelines/abc"><button>Pipelines</button></Link>
-      <Link href="/pipelines/[pipelineId]/states/[stateId]" as="/pipelines/123/states/456"><button>States</button></Link>
+      <Link href="/secondary/my-greeting">
+        <a>to greeting</a>
+      </Link>
+      <Link href="/pipelines/[pipelineId]" as="/pipelines/abc">
+        <button>Pipelines</button>
+      </Link>
+      <Link
+        href="/pipelines/[pipelineId]/states/[stateId]"
+        as="/pipelines/123/states/456"
+      >
+        <button>States</button>
+      </Link>
+      <Link href="/stylesDemo">
+        <button>To Styles Demo</button>
+      </Link>
     </div>
   );
 };
