@@ -3,6 +3,7 @@ import { reducer } from "./reducers";
 import { initialState } from "./reducers";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import logger from "redux-logger";
 
 export const initializeStore = (preloadedState = initialState) =>
-  createStore(reducer, preloadedState, composeWithDevTools(applyMiddleware(thunk)));
+  createStore(reducer, preloadedState, composeWithDevTools(applyMiddleware(thunk, logger)));
