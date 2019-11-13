@@ -3,7 +3,7 @@ import {
   DemoCss,
   DemoLess,
   DemoSass,
-  // DemoStylus
+  DemoStylus
 } from "../src/client/components/Demo2";
 const Styles = () => {
   return (
@@ -16,7 +16,7 @@ const Styles = () => {
       <DemoCss/>
       <DemoSass/>
       <DemoLess/>
-      {/* <DemoStylus/> */}
+      <DemoStylus/>
     </div>
   );
 };

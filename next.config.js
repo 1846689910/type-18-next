@@ -5,20 +5,24 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 const withCss = require("@zeit/next-css");
 const withSass = require("@zeit/next-sass");
 const withLess = require("@zeit/next-less");
-// const withStylus = require("@zeit/next-stylus");
+const withStylus = require("@zeit/next-stylus");
+
+const enableShortHash = true;
 
 module.exports = compose(
   withCss,
   withSass,
   withLess,
-  // withStylus,
+  withStylus,
   withBundleAnalyzer
 )({
   // TODO: work same as `withCss(withBundleAnalyzer({...}))`
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: "[local]___[hash:base64:5]"
+    localIdentName: `${
+      enableShortHash ? "" : "[name]__[local]___"
+    }"[hash:base64:5]"`
   },
   webpack: config => config,
   exportPathMap: async () => {
