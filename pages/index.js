@@ -5,6 +5,7 @@ import Markdown from "react-markdown";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { ParentComp } from "../src/client/components/Demo3";
+import Promise from "bluebird";
 
 const Index = props => {
   const { shows, url } = props;
@@ -57,8 +58,8 @@ And here's the content.
 };
 Index.getInitialProps = async function(context) {
   console.log(context);
-  const res = await fetch("https://api.tvmaze.com/search/shows?q=batman");
-  const data = await res.json();
+  const res = Promise.delay(200).return([{show: 1}, {show: 2}, {show: 3}])
+  const data = await res;
 
   console.log(`Show data fetched. Count: ${data.length}`);
 

@@ -26,21 +26,15 @@ app.prepare().then(async () => {
 
   server.route({
     method: "GET",
-    path: "/b",
-    handler: pathWrapper(app, "/b")
-  });
-
-  server.route({
-    method: "GET",
     path: "/_next/{p*}" /* next specific routes */,
     handler: nextHandlerWrapper(app)
   });
 
   server.route({
     method: "GET",
-    path: "/{filename}" /* use next to handle static files */,
+    path: "/images/{filename}" /* use next to handle static files */,
     handler: (request, h) => {
-      return h.file(Path.resolve("./public", request.params.filename));
+      return h.file(Path.resolve("public/images", request.params.filename));
     }
   });
 

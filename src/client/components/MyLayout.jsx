@@ -13,7 +13,7 @@ export const Header = () => {
   i++;
   return (
     <div>
-      <img src="/electrode.png" alt="electrode" />
+      <img src="/images/electrode.png" alt="electrode" />
       <Link href="/about">
         <button title="About Page">About Page</button>
       </Link>
