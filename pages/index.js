@@ -4,17 +4,19 @@ import fetch from "isomorphic-unfetch";
 import Markdown from "react-markdown";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import { ParentComp } from "../src/client/components/Demo3";
 
 const Index = props => {
   const { shows, url } = props;
   console.log(shows);
   const router = useRouter();
-  console.log(router);  // pathname
+  console.log(router); // pathname
   const DemoDynamic = dynamic(() => import("../src/client/components/Demo1"));
   return (
     <MyLayout>
       <p>I am index page</p>
       <DemoDynamic />
+      <ParentComp />
       <div>
         <Markdown
           source={`
