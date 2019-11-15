@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
-import MyLayout from "../src/client/components/MyLayout";
+import MyLayout from "../client/components/MyLayout";
 import fetch from "isomorphic-unfetch";
 import Markdown from "react-markdown";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
-import { ParentComp } from "../src/client/components/Demo3";
+import { ParentComp } from "../client/components/Demo3";
 import Promise from "bluebird";
 
 const Index = props => {
@@ -12,7 +12,7 @@ const Index = props => {
   console.log(shows);
   const router = useRouter();
   console.log(router); // pathname
-  const DemoDynamic = dynamic(() => import("../src/client/components/Demo1"));
+  const DemoDynamic = dynamic(() => import("../client/components/Demo1"));
   return (
     <MyLayout>
       <p>I am index page</p>

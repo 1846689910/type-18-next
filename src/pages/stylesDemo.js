@@ -4,7 +4,7 @@ import {
   DemoLess,
   DemoSass,
   DemoStylus
-} from "../src/client/components/Demo2";
+} from "../client/components/Demo2";
 const Styles = () => {
   return (
     <div>
