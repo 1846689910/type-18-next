@@ -35,7 +35,8 @@ module.exports = compose(
       "/pipelines/[pipelineId]/states/[stateId]": {
         page: "/pipelines/[pipelineId]/states/[stateId]"
       },
-      "/stylesDemo": { page: "/stylesDemo" }
+      "/stylesDemo": { page: "/stylesDemo" },
+      "/mui-demo": { page: "/mui-demo" }
     };
   },
   distDir: "dist"
