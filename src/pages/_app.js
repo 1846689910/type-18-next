@@ -8,6 +8,13 @@ import theme from "../client/themes";
 import "../client/styles/style.css"; // TODO: after using `withCss`, Link routing will break. Can be fix to work by importing even an empty css file in `_app.js`
 
 class _App extends App {
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }
   render() {
     const { Component, pageProps, store } = this.props;
     return (
