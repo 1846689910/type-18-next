@@ -19,12 +19,14 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Link from "next/link";
+import Layout from "./layout";
 
 export default function() {
   return (
     <Container maxWidth="lg">
       <SimpleAppBar />
       <PrimarySearchAppBar/>
+      <Layout/>
     </Container>
   );
 }
