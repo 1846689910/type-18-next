@@ -54,6 +54,7 @@ export const Header = () => {
       <Link href="/stylesDemo">
         <button>To Styles Demo</button>
       </Link>
+      <Link href="/mui-demo"><button>to Material-ui demo</button></Link>
     </div>
   );
 };

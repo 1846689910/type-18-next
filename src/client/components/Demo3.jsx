@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from "@material-ui/core/Button";
 
 export const ParentComp = () => {
   const refChildComp2 = React.createRef();
@@ -16,9 +17,10 @@ export const ParentComp = () => {
       {/* 直接将ref设置在component上，而该component又没有将ref forward到内部的dom，这种情况不再允许 */}
       <div>
         {showComp4 ? <ChildComp4 /> : ""}
-        <button onClick={() => setShowComp4(!showComp4)}>{showComp4 ? "Hide" : "Show"}Comp4</button>
+        <button onClick={() => setShowComp4(!showComp4)}>
+          {showComp4 ? "Hide" : "Show"}Comp4
+        </button>
       </div>
-      
     </>
   );
 };
@@ -57,19 +59,41 @@ export const ChildComp3 = () => (
 );
 
 export const ChildComp4 = () => {
-  const [num, setNum] = useState(0);  // easy way to define and set a local state, `const [val, setter] = useState(initialValue)`
+  const [num, setNum] = useState(0); // easy way to define and set a local state, `const [val, setter] = useState(initialValue)`
   useEffect(() => console.log("num changed, so I was called"), [num]);
   const [color, setColor] = useState("red");
   useEffect(() => console.log("color changed, so I was called"), [color]);
-  useEffect(() => console.log("I was called when either num or color changed"), [num, color]);
+  useEffect(
+    () => console.log("I was called when either num or color changed"),
+    [num, color]
+  );
   useEffect(() => console.log("I was called after each change"));
   useEffect(() => console.log("componentDidMount"), []);
-  return <>
-    <div>
-      <span>the local variable num is {num}</span>
-      <button onClick={() => setNum(num + 1)}>+</button>
-      <button onClick={() => setNum(num - 1)}>-</button>
-    </div>
-    <div><p style={{color}} onClick={() => setColor(color === "red" ? "blue" : "red")}>I am {color}</p></div>
-  </>;
+  return (
+    <>
+      <div>
+        <span>the local variable num is {num}</span>
+        <Button variant="contained" color="primary" onClick={() => setNum(num + 1)}>+</Button>
+        <Button variant="contained" color="primary" onClick={() => setNum(num - 1)}>-</Button>
+      </div>
+      <div>
+        <p
+          style={{ color }}
+          onClick={() => setColor(color === "red" ? "blue" : "red")}
+        >
+          I am {color}
+        </p>
+      </div>
+    </>
+  );
+};
+
+export const ChildComp5 = () => {
+  return (
+    <>
+      <Button variant="contained" color="primary">
+        Primary
+      </Button>
+    </>
+  );
 };
