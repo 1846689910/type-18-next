@@ -1,0 +1,30 @@
+$color_1: white;
+$color_2: #09d3ac;
+$background_color_1: #282c34;
+
+.App {
+	text-align: center;
+}
+.App-logo {
+	height: 40vmin;
+}
+.App-header {
+	background-color: $background_color_1;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: $color_1;
+}
+.App-header-div {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+}
+.App-link {
+	color: $color_2;
+}
