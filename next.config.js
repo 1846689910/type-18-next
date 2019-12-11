@@ -28,15 +28,9 @@ module.exports = compose(
   exportPathMap: async () => {
     return {
       "/": { page: "/" },
-      "/about": { page: "/about" },
-      "/secondary/my-greeting": { page: "/secondary/my-greeting" },
-      "/post/[postId]": { page: "/post/[postId]" },
+      "/demo1": { page: "/demo1" },
+      "/demo2/[counter]": { page: "/demo2/[counter]" },
       "/pipelines/[pipelineId]": { page: "/pipelines/[pipelineId]" },
-      "/pipelines/[pipelineId]/states/[stateId]": {
-        page: "/pipelines/[pipelineId]/states/[stateId]"
-      },
-      "/stylesDemo": { page: "/stylesDemo" },
-      "/mui-demo": { page: "/mui-demo" }
     };
   },
   distDir: "dist"

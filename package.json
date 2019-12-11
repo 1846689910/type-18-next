@@ -12,9 +12,9 @@
     "export": "next export",
     "be": "next build; next export",
     "analyze": "cross-env ANALYZE=true next build",
-    "express": "node src/server/express",
-    "koa": "node src/server/koa",
-    "hapi": "node src/server/hapi"
+    "express": "npm run be && node src/server/express",
+    "koa": "npm run be && node src/server/koa",
+    "hapi": "npm run be && node src/server/hapi"
   },
   "keywords": [],
   "author": "",
