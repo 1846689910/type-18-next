@@ -4,12 +4,14 @@ import {
   Container,
   Grid,
   AppBar,
-  Tabs,
-  Tab,
   makeStyles,
-  styled,
-  Typography
+  Typography,
+  Button,
+  ButtonGroup,
+  Menu,
+  MenuItem
 } from "@material-ui/core";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles({
@@ -23,33 +25,60 @@ const useStyles = makeStyles({
     height: "100%"
   }
 });
-export const MyTab = styled(Tab)({
-  textTransform: "none",
-  color: "white",
-  fontWeight: "bold",
-  fontSize: "15px"
-});
+
+function PipelineDropdown(props) {
+  const { anchorEl, handleClose, dropdown } = props;
+  const router = useRouter();
+  const handleClick = jobId => {
+    handleClose();
+    router.push(
+      dropdown.pathname,
+      dropdown.pathname.replace("[pipelineId]", 123).replace("[jobId]", jobId)
+    );
+  };
+  return (
+    <Menu
+      id="simple-menu"
+      anchorEl={anchorEl}
+      keepMounted
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+      style={{ marginTop: "45px" }}
+    >
+      {dropdown.jobIds.map((x, i) => (
+        <MenuItem key={i} onClick={() => handleClick(x)}>
+          Job{x}
+        </MenuItem>
+      ))}
+    </Menu>
+  );
+}
 
 export default function Nav() {
   const classes = useStyles();
   const counter = useSelector(state => state.counter);
+  const [jobAnchor, setJobAnchor] = useState(null);
   const tabs = [
     { pathname: "/", label: "Home" },
     { pathname: "/demo1", label: "Demo1" },
-    { pathname: "/pipelines/[pipelineId]", label: "Pipelines" },
+    {
+      pathname: "/pipelines/[pipelineId]",
+      label: "Pipelines",
+      dropdown: {
+        pathname: "/pipelines/[pipelineId]/jobs/[jobId]",
+        jobIds: [123, 456, 789]
+      }
+    },
     { pathname: "/demo2/[counter]", label: "Demo2" }
   ];
   const router = useRouter();
-  const [value, setValue] = useState(router.pathname);
-  const handleChange = (event, newValue) => {
-    const pathname = newValue;
+  const handleClick = pathname => {
     let asString = pathname;
     if (pathname === "/pipelines/[pipelineId]") {
       asString = pathname.replace("[pipelineId]", 123);
     } else if (pathname === "/demo2/[counter]") {
       asString = pathname.replace("[counter]", counter.value);
     }
-    setValue(pathname);
     router.push(pathname, asString);
   };
   return (
@@ -62,16 +91,62 @@ export default function Nav() {
         </Grid>
       </Container>
       <AppBar position="static" className={classes.root}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          centered
-        >
-          {
-            tabs.map((x, i) => <MyTab label={x.label} value={x.pathname} key={i} />)
-          }
-        </Tabs>
+        <Container maxWidth="md">
+          <Grid
+            container
+            style={{ width: "100%", height: "50px" }}
+            alignItems="center"
+          >
+            <Grid container justify="center">
+              {tabs.map((x, i) => (
+                <Fragment key={i}>
+                  <ButtonGroup
+                    style={{
+                      margin: "0 20px"
+                    }}
+                  >
+                    <Button
+                      variant="contained"
+                      color={
+                        x.pathname === router.pathname ? "secondary" : "default"
+                      }
+                      onClick={() => handleClick(x.pathname)}
+                      style={{
+                        fontWeight: "bold",
+                        textTransform: "none"
+                      }}
+                    >
+                      {x.label}
+                    </Button>
+                    {x.label === "Pipelines" ? (
+                      <Button
+                        variant="contained"
+                        color={
+                          x.pathname === "Pipelines" ? "secondary" : "default"
+                        }
+                        style={{ width: "20px" }}
+                        onClick={e => setJobAnchor(e.target)}
+                      >
+                        <ArrowDropDownIcon />
+                      </Button>
+                    ) : (
+                      ""
+                    )}
+                  </ButtonGroup>
+                  {x.label === "Pipelines" ? (
+                    <PipelineDropdown
+                      anchorEl={jobAnchor}
+                      handleClose={() => setJobAnchor(null)}
+                      dropdown={x.dropdown}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </Fragment>
+              ))}
+            </Grid>
+          </Grid>
+        </Container>
       </AppBar>
     </Fragment>
   );
