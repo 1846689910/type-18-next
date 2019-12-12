@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import {
   Container,
   Grid,
   AppBar,
-  Tabs,
-  Tab,
   makeStyles,
-  styled,
-  Typography
+  Typography,
+  Button,
+  ButtonGroup
 } from "@material-ui/core";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useRouter } from "next/router";
 
 const useStyles = makeStyles({
@@ -23,12 +23,6 @@ const useStyles = makeStyles({
     height: "100%"
   }
 });
-export const MyTab = styled(Tab)({
-  textTransform: "none",
-  color: "white",
-  fontWeight: "bold",
-  fontSize: "15px"
-});
 
 export default function Nav() {
   const classes = useStyles();
@@ -40,16 +34,13 @@ export default function Nav() {
     { pathname: "/demo2/[counter]", label: "Demo2" }
   ];
   const router = useRouter();
-  const [value, setValue] = useState(router.pathname);
-  const handleChange = (event, newValue) => {
-    const pathname = newValue;
+  const handleClick = pathname => {
     let asString = pathname;
     if (pathname === "/pipelines/[pipelineId]") {
       asString = pathname.replace("[pipelineId]", 123);
     } else if (pathname === "/demo2/[counter]") {
       asString = pathname.replace("[counter]", counter.value);
     }
-    setValue(pathname);
     router.push(pathname, asString);
   };
   return (
@@ -62,16 +53,51 @@ export default function Nav() {
         </Grid>
       </Container>
       <AppBar position="static" className={classes.root}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          centered
-        >
-          {
-            tabs.map((x, i) => <MyTab label={x.label} value={x.pathname} key={i} />)
-          }
-        </Tabs>
+        <Container maxWidth="md">
+          <Grid
+            container
+            style={{ width: "100%", height: "50px" }}
+            alignItems="center"
+          >
+            <Grid container justify="center">
+              {tabs.map((x, i) => (
+                <ButtonGroup
+                  key={i}
+                  style={{
+                    margin: "0 20px"
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    color={
+                      x.pathname === router.pathname ? "secondary" : "default"
+                    }
+                    onClick={() => handleClick(x.pathname)}
+                    style={{
+                      fontWeight: "bold",
+                      textTransform: "none"
+                    }}
+                  >
+                    {x.label}
+                  </Button>
+                  {x.label === "Pipelines" ? (
+                    <Button
+                      variant="contained"
+                      color={
+                        x.pathname === router.pathname ? "secondary" : "default"
+                      }
+                      style={{ width: "20px" }}
+                    >
+                      <ArrowDropDownIcon />
+                    </Button>
+                  ) : (
+                    ""
+                  )}
+                </ButtonGroup>
+              ))}
+            </Grid>
+          </Grid>
+        </Container>
       </AppBar>
     </Fragment>
   );
