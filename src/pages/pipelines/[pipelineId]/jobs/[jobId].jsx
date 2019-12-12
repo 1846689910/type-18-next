@@ -5,6 +5,7 @@ import { Container, Grid } from "@material-ui/core";
 
 const JobId = ({ router }) => {
   const { pipelineId, jobId } = router.query;
+  console.log(router);
   return (
     <Fragment>
       <Nav />
