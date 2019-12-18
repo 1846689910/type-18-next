@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, createRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import {
   Container,
@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useRouter } from "next/router";
+import { theme } from "../../styles/theme";
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 
 function PipelineDropdown(props) {
   const { anchorEl, handleClose, dropdown } = props;
+  const refs = dropdown.jobIds.map(() => createRef());
   const router = useRouter();
   const handleClick = jobId => {
     handleClose();
@@ -36,6 +38,14 @@ function PipelineDropdown(props) {
       dropdown.pathname.replace("[pipelineId]", 123).replace("[jobId]", jobId)
     );
   };
+  useEffect(() => {
+    const idx = dropdown.jobIds.findIndex(x => `${x}` === router.query.jobId);
+    if (idx > 0) {
+      refs.forEach(x => x.current && (x.current.style.background = ""));
+      refs[idx].current &&
+        (refs[idx].current.style.background = theme.palette.secondary.main);
+    }
+  });
   return (
     <Menu
       id="simple-menu"
@@ -46,7 +56,7 @@ function PipelineDropdown(props) {
       style={{ marginTop: "45px" }}
     >
       {dropdown.jobIds.map((x, i) => (
-        <MenuItem key={i} onClick={() => handleClick(x)}>
+        <MenuItem key={i} onClick={() => handleClick(x, i)} ref={refs[i]}>
           Job{x}
         </MenuItem>
       ))}

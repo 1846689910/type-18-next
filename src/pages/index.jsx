@@ -53,6 +53,7 @@ export default function Index(props) {
       <Container maxWidth="md">
         <Grid container>
           <Grid container justify="center">
+            {/* this is a row */}
             <Typography variant="h5">The {"<Home/>"} component</Typography>
           </Grid>
           <ModuledStyleDemo />
