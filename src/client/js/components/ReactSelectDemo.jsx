@@ -33,6 +33,7 @@ export function ReactSelectDemo() {
           options={colourOptions}
           className="basic-multi-select"
           classNamePrefix="select"
+          onChange={(selected, action) => console.log([selected, action])}
         />
       </Grid>
     </Grid>
