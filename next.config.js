@@ -30,7 +30,8 @@ module.exports = compose(
       "/": { page: "/" },
       "/demo1": { page: "/demo1" },
       "/demo2/[counter]": { page: "/demo2/[counter]" },
-      "/pipelines/[pipelineId]": { page: "/pipelines/[pipelineId]" },
+      "/folders/[folderId]": { page: "/folders/[folderId]" },
+      "/folders/[folderId]/files/[fileId]": { page: "/folders/[folderId]/files/[fileId]" }
     };
   },
   distDir: "dist"

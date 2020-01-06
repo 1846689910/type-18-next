@@ -1,18 +1,18 @@
 import { Fragment } from "react";
-import { withRouter } from "next/router";
-import Nav from "../../../../client/js/components/Nav";
+import { useRouter } from "next/router";
+import Nav from "../../client/js/components/Nav";
 import { Container, Grid } from "@material-ui/core";
 
-const JobId = ({ router }) => {
-  const { pipelineId, jobId } = router.query;
-  console.log(router);
+const FolderId = () => {
+  const router = useRouter();
+  const { folderId } = router.query;
   return (
     <Fragment>
       <Nav />
       <Container maxWidth="md">
         <Grid container>
           <Grid container item xs={12} justify="center">
-            This is job page pipeline {pipelineId} job {jobId}
+            This is folder page {folderId}
           </Grid>
           <Grid container item xs={12} justify="center"></Grid>
         </Grid>
@@ -20,5 +20,4 @@ const JobId = ({ router }) => {
     </Fragment>
   );
 };
-
-export default withRouter(JobId);
+export default FolderId;

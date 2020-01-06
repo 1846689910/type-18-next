@@ -29,17 +29,17 @@ const useStyles = makeStyles({
 
 function PipelineDropdown(props) {
   const { anchorEl, handleClose, dropdown } = props;
-  const refs = dropdown.jobIds.map(() => createRef());
+  const refs = dropdown.fileIds.map(() => createRef());
   const router = useRouter();
-  const handleClick = jobId => {
+  const handleClick = fileId => {
     handleClose();
     router.push(
       dropdown.pathname,
-      dropdown.pathname.replace("[pipelineId]", 123).replace("[jobId]", jobId)
+      dropdown.pathname.replace("[folderId]", 123).replace("[fileId]", fileId)
     );
   };
   useEffect(() => {
-    const idx = dropdown.jobIds.findIndex(x => `${x}` === router.query.jobId);
+    const idx = dropdown.fileIds.findIndex(x => `${x}` === router.query.jobId);
     if (idx > 0) {
       refs.forEach(x => x.current && (x.current.style.background = ""));
       refs[idx].current &&
@@ -55,9 +55,9 @@ function PipelineDropdown(props) {
       onClose={handleClose}
       style={{ marginTop: "45px" }}
     >
-      {dropdown.jobIds.map((x, i) => (
+      {dropdown.fileIds.map((x, i) => (
         <MenuItem key={i} onClick={() => handleClick(x, i)} ref={refs[i]}>
-          Job{x}
+          File{x}
         </MenuItem>
       ))}
     </Menu>
@@ -67,16 +67,16 @@ function PipelineDropdown(props) {
 export default function Nav() {
   const classes = useStyles();
   const counter = useSelector(state => state.counter);
-  const [jobAnchor, setJobAnchor] = useState(null);
+  const [fileAnchor, setFileAnchor] = useState(null);
   const tabs = [
     { pathname: "/", label: "Home" },
     { pathname: "/demo1", label: "Demo1" },
     {
-      pathname: "/pipelines/[pipelineId]",
-      label: "Pipelines",
+      pathname: "/folders/[folderId]",
+      label: "Folders",
       dropdown: {
-        pathname: "/pipelines/[pipelineId]/jobs/[jobId]",
-        jobIds: [123, 456, 789]
+        pathname: "/folders/[folderId]/files/[fileId]",
+        fileIds: [123, 456, 789]
       }
     },
     { pathname: "/demo2/[counter]", label: "Demo2" }
@@ -84,8 +84,8 @@ export default function Nav() {
   const router = useRouter();
   const handleClick = pathname => {
     let asString = pathname;
-    if (pathname === "/pipelines/[pipelineId]") {
-      asString = pathname.replace("[pipelineId]", 123);
+    if (pathname === "/folders/[folderId]") {
+      asString = pathname.replace("[folderId]", 123);
     } else if (pathname === "/demo2/[counter]") {
       asString = pathname.replace("[counter]", counter.value);
     }
@@ -128,14 +128,14 @@ export default function Nav() {
                     >
                       {x.label}
                     </Button>
-                    {x.label === "Pipelines" ? (
+                    {x.label === "Folders" ? (
                       <Button
                         variant="contained"
                         color={
-                          x.pathname === "Pipelines" ? "secondary" : "default"
+                          x.pathname === "Folders" ? "secondary" : "default"
                         }
                         style={{ width: "20px" }}
-                        onClick={e => setJobAnchor(e.target)}
+                        onClick={e => setFileAnchor(e.target)}
                       >
                         <ArrowDropDownIcon />
                       </Button>
@@ -143,10 +143,10 @@ export default function Nav() {
                       ""
                     )}
                   </ButtonGroup>
-                  {x.label === "Pipelines" ? (
+                  {x.label === "Folders" ? (
                     <PipelineDropdown
-                      anchorEl={jobAnchor}
-                      handleClose={() => setJobAnchor(null)}
+                      anchorEl={fileAnchor}
+                      handleClose={() => setFileAnchor(null)}
                       dropdown={x.dropdown}
                     />
                   ) : (
