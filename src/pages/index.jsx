@@ -9,6 +9,7 @@ import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";
 import ModuledStyleDemo from "../client/js/components/ModuledStyleDemo";
 import DynamicImportDemo from "../client/js/components/DynamicImportDemo";
+import RecomposeDemo from "../client/js/components/RecomposeDemo";
 import Promise from "bluebird";
 
 export default function Index(props) {
@@ -24,6 +25,9 @@ export default function Index(props) {
           </DemoWrapper>
           <DemoWrapper title="Dynamic Import Demo">
             <DynamicImportDemo />
+          </DemoWrapper>
+          <DemoWrapper title="Recompose Demo">
+            <RecomposeDemo />
           </DemoWrapper>
         </Grid>
       </Container>
