@@ -80,6 +80,15 @@ function _EachSwitch({ children, id, primary, handleToggle, checked, edge, capti
     </ListItem>
   );
 }
+_EachSwitch.propTypes = {
+  children: PropTypes.object,
+  id: PropTypes.string,
+  primary: PropTypes.string,
+  handleToggle: PropTypes.func,
+  checked: PropTypes.array,
+  edge: PropTypes.string,
+  caption: PropTypes.string
+};
 const EachSwitch = getContext({ edge: PropTypes.string })(_EachSwitch);
 
 function RecomposeDemo({ handleToggle, checked, title, info }) {
@@ -124,4 +133,10 @@ function RecomposeDemo({ handleToggle, checked, title, info }) {
     </Grid>
   );
 }
+RecomposeDemo.propTypes = {
+  handleToggle: PropTypes.func,
+  checked: PropTypes.array,
+  title: PropTypes.string,
+  info: PropTypes.object
+};
 export default enhance(RecomposeDemo);
