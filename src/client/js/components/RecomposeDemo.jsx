@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Grid,
@@ -13,7 +14,14 @@ import {
 import WifiIcon from "@material-ui/icons/Wifi";
 import FlightIcon from "@material-ui/icons/FlightTakeoff";
 import BluetoothIcon from "@material-ui/icons/Bluetooth";
-import { compose, withState, withHandlers, withProps } from "recompose";
+import {
+  compose,
+  withState,
+  withHandlers,
+  withProps,
+  withContext,
+  getContext
+} from "recompose";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 const enhance = compose(
   withState("checked", "setChecked", ["wifi"]),
   withHandlers({
-    handleToggle: ({ checked, setChecked }) => (value) => event => {
+    handleToggle: ({ checked, setChecked }) => value => event => {
       const currentIndex = checked.indexOf(value);
       let newChecked = [...checked];
       if (currentIndex === -1) {
@@ -48,6 +56,32 @@ const enhance = compose(
   })
 );
 
+const _Provider = ({ children }) => children;
+
+const CustomProvider = withContext({ edge: PropTypes.string }, ({ edge }) => ({
+  edge
+}))(_Provider);
+
+function _EachSwitch({ children, id, primary, handleToggle, checked, edge, caption }) {
+  return (
+    <ListItem>
+      <ListItemIcon>
+        {children}
+      </ListItemIcon>
+      <ListItemText id={id} primary={primary} />
+      <ListItemSecondaryAction>
+        <Switch
+          edge={edge}
+          onChange={handleToggle(caption)}
+          checked={checked.indexOf(caption) !== -1}
+          inputProps={{ "aria-labelledby": id }}
+        />
+      </ListItemSecondaryAction>
+    </ListItem>
+  );
+}
+const EachSwitch = getContext({ edge: PropTypes.string })(_EachSwitch);
+
 function RecomposeDemo({ handleToggle, checked, title, info }) {
   const classes = useStyles();
   const { wifi, bluetooth, flight } = info;
@@ -57,48 +91,35 @@ function RecomposeDemo({ handleToggle, checked, title, info }) {
         subheader={<ListSubheader>{title}</ListSubheader>}
         className={classes.root}
       >
-        <ListItem>
-          <ListItemIcon>
+        <CustomProvider edge="end">
+          <EachSwitch
+            {...{ handleToggle, checked, id: wifi.id, primary: wifi.primary, caption: "wifi" }}
+          >
             <WifiIcon />
-          </ListItemIcon>
-          <ListItemText id={wifi.id} primary={wifi.primary} />
-          <ListItemSecondaryAction>
-            <Switch
-              edge="end"
-              onChange={handleToggle("wifi")}
-              checked={checked.indexOf("wifi") !== -1}
-              inputProps={{ "aria-labelledby": wifi.id }}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
+          </EachSwitch>
+          <EachSwitch
+            {...{
+              handleToggle,
+              checked,
+              id: bluetooth.id,
+              primary: bluetooth.primary,
+              caption: "bluetooth"
+            }}
+          >
             <BluetoothIcon />
-          </ListItemIcon>
-          <ListItemText id={bluetooth.id} primary={bluetooth.primary} />
-          <ListItemSecondaryAction>
-            <Switch
-              edge="end"
-              onChange={handleToggle("bluetooth")}
-              checked={checked.indexOf("bluetooth") !== -1}
-              inputProps={{ "aria-labelledby": bluetooth.id }}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
+          </EachSwitch>
+          <EachSwitch
+            {...{
+              handleToggle,
+              checked,
+              id: flight.id,
+              primary: flight.primary,
+              caption: "flight"
+            }}
+          >
             <FlightIcon />
-          </ListItemIcon>
-          <ListItemText id={flight.id} primary={flight.primary} />
-          <ListItemSecondaryAction>
-            <Switch
-              edge="end"
-              onChange={handleToggle("flight")}
-              checked={checked.indexOf("flight") !== -1}
-              inputProps={{ "aria-labelledby": flight.id }}
-            />
-          </ListItemSecondaryAction>
-        </ListItem>
+          </EachSwitch>
+        </CustomProvider>
       </List>
     </Grid>
   );
