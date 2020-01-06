@@ -12,16 +12,16 @@ export default function ModuledStyleDemo() {
   return (
     <Grid container justify="space-evenly">
       <Grid item>
-        <div className={css1.css}>CSS Module + CSS</div>
+        <strong className={css1.css}>CSS Module + CSS</strong>
       </Grid>
       <Grid item>
-        <div className={scss1.scss}>CSS Module + SCSS</div>
+        <strong className={scss1.scss}>CSS Module + SCSS</strong>
       </Grid>
       <Grid item>
-        <div className={less1.less}>CSS Module + LESS</div>
+        <strong className={less1.less}>CSS Module + LESS</strong>
       </Grid>
       <Grid item>
-        <div className={stylus1.stylus}>CSS Module + STYLUS</div>
+        <strong className={stylus1.stylus}>CSS Module + STYLUS</strong>
       </Grid>
     </Grid>
   );
