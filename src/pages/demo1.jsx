@@ -45,7 +45,7 @@ export default function Demo1(props) {
 Demo1.propTypes = {
   initObj: PropTypes.object
 };
-Demo1.getInitialProps = async context => {
+Demo1.getInitialProps = async context => {  // eslint-disable-line
   const message = await Promise.resolve("Hello");
   return {
     initObj: { message }
