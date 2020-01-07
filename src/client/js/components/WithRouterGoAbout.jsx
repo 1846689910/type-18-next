@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 import { withRouter } from "next/router";
 
 const WithRouterGoAbout = ({ router }) => {
@@ -9,6 +11,9 @@ const WithRouterGoAbout = ({ router }) => {
     });
   };
   return <button onClick={handler}>WithRouterGoAbout</button>;
+};
+WithRouterGoAbout.propTypes = {
+  router: PropTypes.object
 };
 
 export default withRouter(WithRouterGoAbout);

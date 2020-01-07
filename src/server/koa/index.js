@@ -1,9 +1,6 @@
 const Koa = require("koa");
 const Router = require("koa-router");
-const { parse } = require("url");
 const next = require("next");
-const Fs = require("fs");
-const Path = require("path");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });

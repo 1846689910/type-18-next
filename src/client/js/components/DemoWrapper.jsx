@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Typography, Divider, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -13,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default ({ children, title }) => {
+export default function DemoWrapper({ children, title }) {
   const classes = useStyles();
   return (
     <Grid container>
@@ -27,4 +29,8 @@ export default ({ children, title }) => {
       {children}
     </Grid>
   );
+};
+DemoWrapper.propTypes = {
+  children: PropTypes.object,
+  title: PropTypes.string
 };
