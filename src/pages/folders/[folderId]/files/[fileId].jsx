@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 import { Fragment } from "react";
 import { withRouter } from "next/router";
 import Nav from "../../../../client/js/components/Nav";
@@ -20,5 +22,7 @@ const FileId = ({ router }) => {
     </Fragment>
   );
 };
-
+FileId.propTypes = {
+  router: PropTypes.object
+};
 export default withRouter(FileId);

@@ -12,7 +12,7 @@ export const decrease = (attr={}) => ({
   ...attr,
   type: ActionTypes.DECREASE
 });
-export const delayIncrease = () => async(dispatch, getState) => {
+export const delayIncrease = () => async(dispatch, getState) => {  // eslint-disable-line
   await Promise.delay(1000);
   dispatch(increase());
-}
+};

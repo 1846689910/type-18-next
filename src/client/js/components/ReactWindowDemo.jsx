@@ -1,3 +1,5 @@
+import React from "react";
+import PropTypes from "prop-types";
 import { FixedSizeList } from "react-window";
 import { Grid, makeStyles, MenuItem } from "@material-ui/core";
 
@@ -10,9 +12,14 @@ const useStyles = makeStyles({
   }
 });
 
-const Row = ({ data, index, style }) => (
+const Row = ({ data, index, style }) => (  // eslint-disable-line
   <MenuItem style={style}>Row {index}</MenuItem>
 );
+Row.propTypes = {
+  data: PropTypes.object,
+  index: PropTypes.number,
+  style: PropTypes.object
+};
 
 export default () => {
   const classes = useStyles();

@@ -40,7 +40,7 @@ export default App => {
 
     constructor(props) {
       super(props);
-      this.store = getOrCreateStore(props.initialState);
+      this.store = getOrCreateStore(props.initialState);  // eslint-disable-line
     }
 
     render() {

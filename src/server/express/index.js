@@ -1,8 +1,5 @@
 const express = require("express");
-const { parse } = require("url");
 const next = require("next");
-const Fs = require("fs");
-const Path = require("path");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });

@@ -1,4 +1,5 @@
 import React, { Fragment, useState, createRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import {
   Container,
@@ -63,6 +64,11 @@ function PipelineDropdown(props) {
     </Menu>
   );
 }
+PipelineDropdown.propTypes = {
+  anchorEl: PropTypes.object,
+  handleClose: PropTypes.func,
+  dropdown: PropTypes.object
+};
 
 export default function Nav() {
   const classes = useStyles();

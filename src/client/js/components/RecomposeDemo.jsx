@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 const enhance = compose(
   withState("checked", "setChecked", ["wifi"]),
   withHandlers({
-    handleToggle: ({ checked, setChecked }) => value => event => {
+    handleToggle: ({ checked, setChecked }) => value => event => {  // eslint-disable-line
       const currentIndex = checked.indexOf(value);
       let newChecked = [...checked];
       if (currentIndex === -1) {

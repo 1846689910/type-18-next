@@ -1,7 +1,5 @@
 const Hapi = require("@hapi/hapi");
-const { parse } = require("url");
 const next = require("next");
-const Fs = require("fs");
 const Path = require("path");
 const {
   nextHandlerWrapper,
