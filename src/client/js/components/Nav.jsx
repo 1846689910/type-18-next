@@ -1,4 +1,4 @@
-import React, { Fragment, useState, createRef, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import {
@@ -6,6 +6,7 @@ import {
   Grid,
   AppBar,
   makeStyles,
+  createStyles,
   Typography,
   Button,
   ButtonGroup,
@@ -14,23 +15,46 @@ import {
 } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useRouter } from "next/router";
-import { theme } from "../../styles/theme";
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1
-  },
-  hc: {
-    height: "60px"
-  },
-  hcg: {
-    height: "100%"
-  }
-});
+const useStyles = makeStyles(theme =>
+  createStyles({
+    root: {
+      flexGrow: 1
+    },
+    hc: {
+      height: "60px"
+    },
+    hcg: {
+      height: "100%"
+    },
+    menu: {
+      marginTop: "45px"
+    },
+    container_grid: {
+      width: "100%",
+      height: "50px"
+    },
+    btnGroup: {
+      margin: "0 20px"
+    },
+    btnGroup_btn: {
+      fontWeight: "bold",
+      textTransform: "none"
+    },
+    folders_btn: {
+      width: "20px"
+    },
+    subMenuItemMatch: {
+      background: theme.palette.secondary.main
+    },
+    subMenuItemUnmatch: {
+      background: ""
+    }
+  })
+);
 
 function PipelineDropdown(props) {
   const { anchorEl, handleClose, dropdown } = props;
-  const refs = dropdown.fileIds.map(() => createRef());
   const router = useRouter();
   const handleClick = fileId => {
     handleClose();
@@ -39,25 +63,26 @@ function PipelineDropdown(props) {
       dropdown.pathname.replace("[folderId]", 123).replace("[fileId]", fileId)
     );
   };
-  useEffect(() => {
-    const idx = dropdown.fileIds.findIndex(x => `${x}` === router.query.jobId);
-    if (idx > 0) {
-      refs.forEach(x => x.current && (x.current.style.background = ""));
-      refs[idx].current &&
-        (refs[idx].current.style.background = theme.palette.secondary.main);
-    }
-  });
+  const classes = useStyles();
   return (
     <Menu
       id="simple-menu"
+      className={classes.menu}
       anchorEl={anchorEl}
       keepMounted
       open={Boolean(anchorEl)}
       onClose={handleClose}
-      style={{ marginTop: "45px" }}
     >
       {dropdown.fileIds.map((x, i) => (
-        <MenuItem key={i} onClick={() => handleClick(x, i)} ref={refs[i]}>
+        <MenuItem
+          className={
+            router.query.fileId === `${x}`
+              ? classes.subMenuItemMatch
+              : classes.subMenuItemUnmatch
+          }
+          key={i}
+          onClick={() => handleClick(x, i)}
+        >
           File{x}
         </MenuItem>
       ))}
@@ -110,53 +135,39 @@ export default function Nav() {
         <Container maxWidth="md">
           <Grid
             container
-            style={{ width: "100%", height: "50px" }}
+            className={classes.container_grid}
             alignItems="center"
           >
             <Grid container justify="center">
               {tabs.map((x, i) => (
                 <Fragment key={i}>
-                  <ButtonGroup
-                    style={{
-                      margin: "0 20px"
-                    }}
-                  >
+                  <ButtonGroup className={classes.btnGroup}>
                     <Button
+                      className={classes.btnGroup_btn}
                       variant="contained"
                       color={
                         x.pathname === router.pathname ? "secondary" : "default"
                       }
                       onClick={() => handleClick(x.pathname)}
-                      style={{
-                        fontWeight: "bold",
-                        textTransform: "none"
-                      }}
                     >
                       {x.label}
                     </Button>
-                    {x.label === "Folders" ? (
+                    {x.label === "Folders" && (
                       <Button
+                        className={classes.folders_btn}
                         variant="contained"
-                        color={
-                          x.pathname === "Folders" ? "secondary" : "default"
-                        }
-                        style={{ width: "20px" }}
                         onClick={e => setFileAnchor(e.target)}
                       >
                         <ArrowDropDownIcon />
                       </Button>
-                    ) : (
-                      ""
                     )}
                   </ButtonGroup>
-                  {x.label === "Folders" ? (
+                  {x.label === "Folders" && (
                     <PipelineDropdown
                       anchorEl={fileAnchor}
                       handleClose={() => setFileAnchor(null)}
                       dropdown={x.dropdown}
                     />
-                  ) : (
-                    ""
                   )}
                 </Fragment>
               ))}
