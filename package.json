@@ -21,13 +21,13 @@
   "license": "ISC",
   "dependencies": {
     "@hapi/hapi": "^19.0.5",
-    "@material-ui/core": "^4.8.3",
+    "@material-ui/core": "^4.9.0",
     "@material-ui/icons": "^4.5.1",
-    "@material-ui/styles": "^4.8.2",
-    "@next/bundle-analyzer": "^9.2.0",
-    "@next/plugin-material-ui": "^9.2.0",
-    "@typescript-eslint/eslint-plugin": "^2.17.0",
-    "@typescript-eslint/parser": "^2.17.0",
+    "@material-ui/styles": "^4.9.0",
+    "@next/bundle-analyzer": "^9.2.1",
+    "@next/plugin-material-ui": "^9.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
@@ -50,7 +50,7 @@
     "koa": "^2.11.0",
     "koa-router": "^7.4.0",
     "less": "^3.10.3",
-    "next": "^9.2.0",
+    "next": "^9.2.1",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -67,6 +67,6 @@
     "stylus": "^0.54.7"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.6"
+    "babel-plugin-styled-components": "^1.10.7"
   }
 }
