@@ -6,7 +6,6 @@ import {
   Grid,
   AppBar,
   makeStyles,
-  createStyles,
   Typography,
   Button,
   ButtonGroup,
@@ -16,42 +15,40 @@ import {
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useRouter } from "next/router";
 
-const useStyles = makeStyles(theme =>
-  createStyles({
-    root: {
-      flexGrow: 1
-    },
-    hc: {
-      height: "60px"
-    },
-    hcg: {
-      height: "100%"
-    },
-    menu: {
-      marginTop: "45px"
-    },
-    container_grid: {
-      width: "100%",
-      height: "50px"
-    },
-    btnGroup: {
-      margin: "0 20px"
-    },
-    btnGroup_btn: {
-      fontWeight: "bold",
-      textTransform: "none"
-    },
-    folders_btn: {
-      width: "20px"
-    },
-    subMenuItemMatch: {
-      background: theme.palette.secondary.main
-    },
-    subMenuItemUnmatch: {
-      background: ""
-    }
-  })
-);
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  hc: {
+    height: "60px"
+  },
+  hcg: {
+    height: "100%"
+  },
+  menu: {
+    marginTop: "45px"
+  },
+  container_grid: {
+    width: "100%",
+    height: "50px"
+  },
+  btnGroup: {
+    margin: "0 20px"
+  },
+  btnGroup_btn: {
+    fontWeight: "bold",
+    textTransform: "none"
+  },
+  folders_btn: {
+    width: "20px"
+  },
+  subMenuItemMatch: {
+    background: theme.palette.secondary.main
+  },
+  subMenuItemUnmatch: {
+    background: ""
+  }
+}));
 
 function PipelineDropdown(props) {
   const { anchorEl, handleClose, dropdown } = props;
