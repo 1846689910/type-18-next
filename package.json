@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "mocha": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test mocha",
     "dev": "next",
     "start": "next start -p $PORT",
     "build": "next build",
