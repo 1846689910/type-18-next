@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test mocha",
+    "browser-automation": "node scripts/browser-automation",
     "dev": "next",
     "start": "next start -p $PORT",
     "build": "next build",
@@ -34,6 +35,7 @@
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-stylus": "^1.0.1",
     "babel-eslint": "^10.0.3",
+    "chromedriver": "^80.0.1",
     "clsx": "^1.1.0",
     "cross-env": "^7.0.0",
     "css-loader": "^3.4.2",
@@ -66,6 +68,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "selenium-webdriver": "^4.0.0-alpha.5",
     "styled-components": "^5.0.1",
     "stylus": "^0.54.7"
   },
