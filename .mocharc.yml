@@ -1,0 +1,2 @@
+require: ["@babel/register", "jsdom-global/register", "test/mocha.config.js"]
+spec: test/**/*.spec.js
