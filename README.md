@@ -34,6 +34,16 @@ npm run analyze
 yarn run analyze
 ```
 
+## test
+
+```bash
+npm test
+# OR
+yarn test
+```
+- enzyme configuration in `test/mocha.config.js`
+- mocha configuration: `.mocharc.yml` include `test/mocha.config.js`
+
 ## run with self defined server
 
 ```bash
