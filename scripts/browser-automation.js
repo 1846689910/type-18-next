@@ -11,7 +11,7 @@ const useBrowserType = () => {
   );
 };
 
-execSync("node browser-automation/cases/type-18-hek", {
+execSync("node browser-automation/cases/type-18-next", {
   env: {
     ...process.env,
     BROWSER_ENV: useBrowserType()

@@ -11,7 +11,7 @@ const { newWebDriver, wait, waitUntilBodyLocated } = require("../utils");
 
     await driver
       .findElement(By.css("input[type=text]"))
-      .sendKeys("1846689910/type-18-hek", Key.RETURN);
+      .sendKeys("1846689910/type-18-next", Key.RETURN);
 
     await waitUntilBodyLocated(driver);
 
@@ -19,7 +19,7 @@ const { newWebDriver, wait, waitUntilBodyLocated } = require("../utils");
       .move({
         duration: 500,
         origin: await driver.findElement(
-          By.css("a[href='https://github.com/1846689910/type-18-hek']")
+          By.css("a[href='https://github.com/1846689910/type-18-next']")
         )
       })
       .click()
