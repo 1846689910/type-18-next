@@ -1,5 +1,7 @@
 const { Browser } = require("selenium-webdriver");
 const execSync = require("child_process").execSync;
+const Fs = require("fs");
+const Path = require("path");
 
 const useBrowserType = () => {
   const supportedBrowsers = Object.values(Browser);
@@ -11,9 +13,16 @@ const useBrowserType = () => {
   );
 };
 
-execSync("node browser-automation/cases/type-18-next", {
-  env: {
-    ...process.env,
-    BROWSER_ENV: useBrowserType()
-  }
-});
+const listJsFiles = rootDir =>
+  Fs.readdirSync(rootDir, { withFileTypes: true })
+    .filter(x => x.isFile() && x.name.endsWith(".js"))
+    .map(x => Path.join(rootDir, x.name));
+
+listJsFiles(Path.resolve("browser-automation/cases")).forEach(file =>
+  execSync(`node ${file}`, {
+    env: {
+      ...process.env,
+      BROWSER_ENV: useBrowserType()
+    }
+  })
+);
