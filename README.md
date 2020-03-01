@@ -43,6 +43,7 @@ yarn run browser-automation -chrome
 ```
 
 - does not support the other browsers on the [list](https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/capabilities_exports_Browser.html)
+- implemented with [`selenium-webdriver`](https://www.npmjs.com/package/selenium-webdriver) + [`chromedriver`](https://www.npmjs.com/package/chromedriver) (chrome >= 80)
 
 <img src="./doc/images/yarn-ba.gif" alt="demo browser automation" width="80%"/>
 
