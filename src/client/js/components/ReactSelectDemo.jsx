@@ -35,7 +35,7 @@ const colourOptions = async () => [
   { value: "silver", label: "Silver", color: "#666666" }
 ];
 
-export default function ReactSelectDemo() {
+export function ReactSelectDemo() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const selectOptions = useSelector(state => state.selectOptions);
