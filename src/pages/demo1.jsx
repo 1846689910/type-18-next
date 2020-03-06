@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { Grid, Container, Typography, Button } from "@material-ui/core";
-import { increase, decrease } from "../client/js/settings/actions";
+import { setCounterAction } from "../client/js/settings/actions";
 import Nav from "../client/js/components/Nav";
 
 export default function Demo1(props) {
@@ -22,7 +22,7 @@ export default function Demo1(props) {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={() => dispatch(increase())}
+                onClick={() => dispatch(setCounterAction(counter.value + 1))}
               >
                 increase
               </Button>
@@ -31,7 +31,7 @@ export default function Demo1(props) {
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={() => dispatch(decrease())}
+                onClick={() => dispatch(setCounterAction(counter.value - 1))}
               >
                 decrease
               </Button>
