@@ -1,7 +1,7 @@
 import React from "react";
 import Router from "next/router";
 
-const UseObjGoAbout = () => {
+const StaticRouterPushObjGoAbout = () => {
   const clickHandler = () =>
     Router.push({
       pathname: "/about",
@@ -9,4 +9,4 @@ const UseObjGoAbout = () => {
     });
   return <button onClick={clickHandler}>UseObjGoAbout</button>;
 };
-export default UseObjGoAbout;
+export default StaticRouterPushObjGoAbout;
