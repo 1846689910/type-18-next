@@ -1,12 +1,12 @@
 import React from "react";
-import "../../styles/App.scss";
-import "../../styles/App.css";
-import "../../styles/App.less";
-import "../../styles/App.styl";
-import css1 from "../../styles/moduled/App.module.css";
-import less1 from "../../styles/moduled/App.module.less";
-import scss1 from "../../styles/moduled/App.module.scss";
-import stylus1 from "../../styles/moduled/App.module.styl";
+import "../../../styles/App.scss";
+import "../../../styles/App.css";
+import "../../../styles/App.less";
+import "../../../styles/App.styl";
+import css1 from "../../../styles/moduled/App.module.css";
+import less1 from "../../../styles/moduled/App.module.less";
+import scss1 from "../../../styles/moduled/App.module.scss";
+import stylus1 from "../../../styles/moduled/App.module.styl";
 import { Grid } from "@material-ui/core";
 
 export default function ModuledStyleDemo() {
