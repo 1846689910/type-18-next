@@ -177,7 +177,7 @@ function Title() {
     <Container className={classes.hc} maxWidth="md">
       <Grid className={classes.hcg} container alignItems="flex-end">
         <Typography variant="h4" onClick={() => router.push("/")}>
-          Type 18 hek
+          Type 18 next
         </Typography>
       </Grid>
     </Container>

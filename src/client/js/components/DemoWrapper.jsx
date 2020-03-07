@@ -4,7 +4,7 @@ import { Grid, Typography, Divider, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   title: {
-    margin: "20px 0 5px 0"
+    margin: "20px 0 0px 0"
   },
   typography: {
     fontSize: "18px"
