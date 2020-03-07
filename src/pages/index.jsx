@@ -7,9 +7,9 @@ import "../client/styles/App.styl";
 import { Container, Grid } from "@material-ui/core";
 import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";
-import ModuledStyleDemo from "../client/js/components/ModuledStyleDemo";
-import DynamicImportDemo from "../client/js/components/DynamicImportDemo";
-import RecomposeDemo from "../client/js/components/RecomposeDemo";
+import ModuledStyleDemo from "../client/js/components/Home/ModuledStyleDemo";
+import DynamicImportDemo from "../client/js/components/Home/DynamicImportDemo";
+import RecomposeDemo from "../client/js/components/Home/RecomposeDemo";
 import Promise from "bluebird";
 
 export default function Index(props) {

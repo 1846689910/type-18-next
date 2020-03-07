@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {
   setSelectOptionsAction,
   setSelectedOptionAction
-} from "../settings/actions";
+} from "../../settings/actions";
 import { useSelector, useDispatch } from "react-redux";
 import Select, { components } from "react-select";
 import { Grid, makeStyles } from "@material-ui/core";

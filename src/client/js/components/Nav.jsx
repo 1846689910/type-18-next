@@ -33,7 +33,9 @@ const useStyles = makeStyles(theme => ({
     height: "50px"
   },
   btnGroup: {
-    margin: "0 20px"
+    margin: "0 20px",
+    textTransform: "none",
+    fontWeight: "bold"
   },
   btnGroup_btn: {
     fontWeight: "bold",
@@ -42,22 +44,154 @@ const useStyles = makeStyles(theme => ({
   folders_btn: {
     width: "20px"
   },
-  subMenuItemMatch: {
-    background: theme.palette.secondary.main
-  },
-  subMenuItemUnmatch: {
-    background: ""
-  }
+  subMenuItem: ({ query, fileId }) => ({
+    background: query && query.fileId === `${fileId}` ? theme.palette.secondary.main : ""
+  })
 }));
 
-function PipelineDropdown(props) {
-  const { anchorEl, handleClose, dropdown } = props;
+export default function Nav() {
+  const classes = useStyles();
+  const counter = useSelector(state => state.counter);
+  const router = useRouter();
+  const tabs = [
+    { path: "/", label: "Home" },
+    { path: "/demo1", label: "Demo1" },
+    {
+      path: "/folders/[folderId]",
+      label: "Folders",
+      routes: {
+        path: "/folders/[folderId]/files/[fileId]",
+        fileIds: [123, 456, 789]
+      }
+    },
+    { path: "/demo2/[counter]", label: "Demo2" }
+  ];
+  const tabButtonClick = path => {
+    let asString = path;
+    if (path === "/folders/[folderId]") {
+      asString = path.replace("[folderId]", 123);
+    } else if (path === "/demo2/[counter]") {
+      asString = path.replace("[counter]", counter.value);
+    }
+    router.push(path, asString);
+  };
+  return (
+    <Fragment>
+      <Title />
+      <AppBar position="static" className={classes.root}>
+        <Container maxWidth="md">
+          <Grid
+            container
+            className={classes.container_grid}
+            alignItems="center"
+          >
+            <Grid container justify="center">
+              {tabs.map((x, i) => {
+                const TabBtn = x.routes ? TabButtonGroup : TabButton;
+                return <TabBtn route={x} key={i} handleClick={tabButtonClick} />;
+              })}
+            </Grid>
+          </Grid>
+        </Container>
+      </AppBar>
+    </Fragment>
+  );
+}
+/**
+ *
+ * @description regular tab button
+ */
+function TabButton({ route, handleClick }) {
+  const classes = useStyles();
+  const router = useRouter();
+  return (
+    <Button
+      className={classes.btnGroup}
+      variant="contained"
+      color={route.path === router.pathname ? "secondary" : "default"}
+      onClick={() => handleClick(route.path)}
+    >
+      {route.label}
+    </Button>
+  );
+}
+TabButton.propTypes = {
+  route: PropTypes.shape({
+    key: PropTypes.string,
+    label: PropTypes.string,
+    path: PropTypes.string
+  }),
+  handleClick: PropTypes.func
+};
+/**
+ *
+ * @description tab button with dropdown menu
+ */
+function TabButtonGroup({ route, handleClick }) {
+  const classes = useStyles();
+  const [fileAnchor, setFileAnchor] = useState(null);
+  const router = useRouter();
+  return (
+    <Fragment>
+      <ButtonGroup className={classes.btnGroup}>
+        <Button
+          className={classes.btnGroup_btn}
+          variant="contained"
+          color={route.path === router.pathname ? "secondary" : "default"}
+          onClick={() => handleClick(route.path)}
+        >
+          {route.label}
+        </Button>
+        <Button
+          className={classes.folders_btn}
+          variant="contained"
+          onClick={e => setFileAnchor(e.target)}
+        >
+          <ArrowDropDownIcon />
+        </Button>
+      </ButtonGroup>
+      {route.label === "Folders" && (
+        <FolderDropdown
+          anchorEl={fileAnchor}
+          handleClose={() => setFileAnchor(null)}
+          routes={route.routes}
+        />
+      )}
+    </Fragment>
+  );
+}
+TabButtonGroup.propTypes = {
+  route: PropTypes.shape({
+    key: PropTypes.string,
+    label: PropTypes.string,
+    path: PropTypes.string,
+    routes: PropTypes.object
+  }),
+  handleClick: PropTypes.func
+};
+
+function Title() {
+  const classes = useStyles();
+  const router = useRouter();
+  return (
+    <Container className={classes.hc} maxWidth="md">
+      <Grid className={classes.hcg} container alignItems="flex-end">
+        <Typography variant="h4" onClick={() => router.push("/")}>
+          Type 18 next
+        </Typography>
+      </Grid>
+    </Container>
+  );
+}
+
+function FolderDropdown(props) {
+  const { anchorEl, handleClose, routes } = props;
   const router = useRouter();
   const handleClick = fileId => {
     handleClose();
     router.push(
-      dropdown.pathname,
-      dropdown.pathname.replace("[folderId]", 123).replace("[fileId]", fileId)
+      routes.path,
+      routes.path.replace("[folderId]", 123).replace("[fileId]", fileId)
     );
   };
   const classes = useStyles();
@@ -70,108 +204,37 @@ function PipelineDropdown(props) {
       open={Boolean(anchorEl)}
       onClose={handleClose}
     >
-      {dropdown.fileIds.map((x, i) => (
-        <MenuItem
-          className={
-            router.query.fileId === `${x}`
-              ? classes.subMenuItemMatch
-              : classes.subMenuItemUnmatch
-          }
+      {routes.fileIds.map((x, i) => (
+        <EachMenuItem
           key={i}
-          onClick={() => handleClick(x, i)}
+          fileId={x}
+          query={router.query}
+          onClick={() => handleClick(x)}
         >
-          File{x}
-        </MenuItem>
+          {`File${x}`}
+        </EachMenuItem>
       ))}
     </Menu>
   );
 }
-PipelineDropdown.propTypes = {
+FolderDropdown.propTypes = {
   anchorEl: PropTypes.object,
   handleClose: PropTypes.func,
-  dropdown: PropTypes.object
+  routes: PropTypes.object
 };
 
-export default function Nav() {
-  const classes = useStyles();
-  const counter = useSelector(state => state.counter);
-  const [fileAnchor, setFileAnchor] = useState(null);
-  const tabs = [
-    { pathname: "/", label: "Home" },
-    { pathname: "/demo1", label: "Demo1" },
-    {
-      pathname: "/folders/[folderId]",
-      label: "Folders",
-      dropdown: {
-        pathname: "/folders/[folderId]/files/[fileId]",
-        fileIds: [123, 456, 789]
-      }
-    },
-    { pathname: "/demo2/[counter]", label: "Demo2" }
-  ];
-  const router = useRouter();
-  const handleClick = pathname => {
-    let asString = pathname;
-    if (pathname === "/folders/[folderId]") {
-      asString = pathname.replace("[folderId]", 123);
-    } else if (pathname === "/demo2/[counter]") {
-      asString = pathname.replace("[counter]", counter.value);
-    }
-    router.push(pathname, asString);
-  };
-  return (
-    <Fragment>
-      <Container className={classes.hc} maxWidth="md">
-        <Grid className={classes.hcg} container alignItems="flex-end">
-          <Typography variant="h4" onClick={() => router.push("/")}>
-            Type 18 next
-          </Typography>
-        </Grid>
-      </Container>
-      <AppBar position="static" className={classes.root}>
-        <Container maxWidth="md">
-          <Grid
-            container
-            className={classes.container_grid}
-            alignItems="center"
-          >
-            <Grid container justify="center">
-              {tabs.map((x, i) => (
-                <Fragment key={i}>
-                  <ButtonGroup className={classes.btnGroup}>
-                    <Button
-                      className={classes.btnGroup_btn}
-                      variant="contained"
-                      color={
-                        x.pathname === router.pathname ? "secondary" : "default"
-                      }
-                      onClick={() => handleClick(x.pathname)}
-                    >
-                      {x.label}
-                    </Button>
-                    {x.label === "Folders" && (
-                      <Button
-                        className={classes.folders_btn}
-                        variant="contained"
-                        onClick={e => setFileAnchor(e.target)}
-                      >
-                        <ArrowDropDownIcon />
-                      </Button>
-                    )}
-                  </ButtonGroup>
-                  {x.label === "Folders" && (
-                    <PipelineDropdown
-                      anchorEl={fileAnchor}
-                      handleClose={() => setFileAnchor(null)}
-                      dropdown={x.dropdown}
-                    />
-                  )}
-                </Fragment>
-              ))}
-            </Grid>
-          </Grid>
-        </Container>
-      </AppBar>
-    </Fragment>
-  );
-}
+const EachMenuItem = React.forwardRef(
+  ({ children, query, fileId, ...props }, ref) => {
+    const classes = useStyles({ query, fileId });
+    return (
+      <MenuItem ref={ref} className={classes.subMenuItem} {...props}>
+        {children}
+      </MenuItem>
+    );
+  }
+);
+EachMenuItem.propTypes = {
+  children: PropTypes.string,
+  query: PropTypes.object,
+  fileId: PropTypes.number
+};
