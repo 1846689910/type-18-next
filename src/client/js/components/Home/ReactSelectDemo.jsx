@@ -61,6 +61,7 @@ export function ReactSelectDemo() {
           options={selectOptions.value}
           className="basic-multi-select"
           classNamePrefix="select"
+          maxMenuHeight={210}
           onChange={handleChange}
           components={{
             MultiValueLabel: CustomMultiValueLabel,
@@ -92,9 +93,13 @@ function CustomOption({ children, ...props }) {
   const classes = useStyles(props.data);
   return (
     <components.Option {...props}>
-      <Grid container alignItems="center">
-        <FiberManualRecordIcon className={classes.optionFiber} />
-        <span>{children}</span>
+      <Grid container alignItems="center" item xs={12}>
+        <Grid item xs={1} container alignItems="center">
+          <FiberManualRecordIcon className={classes.optionFiber} />
+        </Grid>
+        <Grid item xs={11}>
+          {children}
+        </Grid>
       </Grid>
     </components.Option>
   );
