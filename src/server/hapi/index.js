@@ -6,6 +6,7 @@ const {
   defaultHandlerWrapper,
   pathWrapper
 } = require("./handlers");
+const { apolloServerHapi } = require("./graphql-middleware-hapi");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -44,6 +45,7 @@ app.prepare().then(async () => {
 
 
   try {
+    await apolloServerHapi.applyMiddleware({ app: server });
     await server.start();
     console.log(`> Ready on http://localhost:${port}`);
   } catch (error) {
