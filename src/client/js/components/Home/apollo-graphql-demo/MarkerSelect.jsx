@@ -56,7 +56,8 @@ export default function MarkerSelect() {
         duration: 3,
         easeLinearity: 1
       });
-      await Promise.delay(3000);
+      // await Promise && Promise.delay(3000);// next.js issue, Promise undefined
+      await new Promise(resolve => setTimeout(resolve, 3000));
     }
     marker.fire("click");
     setSelectedMarkerOption(selected);
