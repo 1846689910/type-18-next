@@ -72,3 +72,31 @@ yarn run express
 yarn run hapi
 yarn run koa
 ```
+
+## **Develop**
+- The entry file for index page is `./src/pages/index.jsx`
+  - routing paths in `./next.config.js` and routing files in `./src/pages`
+  - dev server for each routing path use `async getServerSideProps`
+- The router and redux store, actions, reducers are defined in `./src/client/js/settings`
+- The entry file in server is `./src/server/index.js`
+
+### **Apollo + GraphQL Demo structure**
+
+- dev
+  - client: 
+    - use `ApolloProvider` at `./src/pages/_app.jsx`
+    - use `useQuery` and `useMutation` at `./src/client/js/components/Home/apollo-graphql-demo/LocalContext.jsx`
+    - update local state and apollo cache after mutation
+    - **leaflet css link tag was inserted into `./src/client/js/components/Nav.jsx` custom separater page Head**
+    - in order to avoid render leaflet map on server side, use `next/dynamic` for dynamic loading, and disable `ssr`
+  - server: 
+    - use `micro` as dev server internally
+    - use `next-dev-resolvers` and `type-defs` for `apollo-server-micro`
+    - set up handler in `./src/pages/graphql.jsx`
+- prod
+  - client: 
+    - same as the above dev client
+  - server: 
+    - use `resolvers` and `typeDefs` in `./src/server/utils/graphql`
+    - use `apollo-server-hapi/koa/express` for hapi/koa/express server respectively
+    - the used apollo middleware/server will read data from `./src/data/landmarks.geo.json` with node.js `fs` to mock up the process of data fetching.
