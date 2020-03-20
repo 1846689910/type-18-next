@@ -1,7 +1,7 @@
-import { schema, root } from "../utils/graphql";
-import { graphql } from "graphql";
-import { ApolloServer } from "apollo-server-koa";
-import { typeDefs, resolvers } from "../utils/graphql";
+const { schema, root } = require("../utils/graphql");
+const { graphql } = require("graphql");
+const { ApolloServer } = require("apollo-server-koa");
+const { typeDefs, resolvers } = require("../utils/graphql");
 
 /**
  * @deprecated
