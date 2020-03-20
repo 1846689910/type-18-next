@@ -9,7 +9,6 @@ import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";
 import ModuledStyleDemo from "../client/js/components/Home/ModuledStyleDemo";
 import DynamicImportDemo from "../client/js/components/Home/DynamicImportDemo";
-// import RecomposeDemo from "../client/js/components/Demo1/RecomposeDemo";
 import ApolloGraphqlDemo from "../client/js/components/Home/apollo-graphql-demo";
 import Promise from "bluebird";
 
@@ -27,9 +26,6 @@ export default function Index(props) {
           <DemoWrapper title="Dynamic Import Demo">
             <DynamicImportDemo />
           </DemoWrapper>
-          {/* <DemoWrapper title="Recompose Demo">
-            <RecomposeDemo />
-          </DemoWrapper> */}
           <DemoWrapper title="Apollo Graphql Demo">
             <ApolloGraphqlDemo />
           </DemoWrapper>

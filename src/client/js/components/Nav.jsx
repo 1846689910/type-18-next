@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -45,7 +46,8 @@ const useStyles = makeStyles(theme => ({
     width: "20px"
   },
   subMenuItem: ({ query, fileId }) => ({
-    background: query && query.fileId === `${fileId}` ? theme.palette.secondary.main : ""
+    background:
+      query && query.fileId === `${fileId}` ? theme.palette.secondary.main : ""
   })
 }));
 
@@ -53,6 +55,7 @@ export default function Nav() {
   const classes = useStyles();
   const counter = useSelector(state => state.counter);
   const router = useRouter();
+  console.log(router);
   const tabs = [
     { path: "/", label: "Home" },
     { path: "/demo1", label: "Demo1" },
@@ -77,6 +80,7 @@ export default function Nav() {
   };
   return (
     <Fragment>
+      <ForNextJsCustomHead asPath={router.asPath} />
       <Title />
       <AppBar position="static" className={classes.root}>
         <Container maxWidth="md">
@@ -88,7 +92,9 @@ export default function Nav() {
             <Grid container justify="center">
               {tabs.map((x, i) => {
                 const TabBtn = x.routes ? TabButtonGroup : TabButton;
-                return <TabBtn route={x} key={i} handleClick={tabButtonClick} />;
+                return (
+                  <TabBtn route={x} key={i} handleClick={tabButtonClick} />
+                );
               })}
             </Grid>
           </Grid>
@@ -237,4 +243,24 @@ EachMenuItem.propTypes = {
   children: PropTypes.string,
   query: PropTypes.object,
   fileId: PropTypes.number
+};
+function ForNextJsCustomHead({ asPath }) {
+  const atHome = asPath === "/";
+  return (
+    <Head>
+      <title>{`type-18-next ${atHome ? "" : asPath}`}</title>
+      {asPath && (
+        <link
+          key="leaflet-css"
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css"
+          integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM="
+          crossorigin="anonymous"
+        />
+      )}
+    </Head>
+  );
+}
+ForNextJsCustomHead.propTypes = {
+  asPath: PropTypes.string
 };

@@ -17,7 +17,6 @@ class _Document extends Document {
             name="viewport"
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
-          <title>hello-next</title>
         </Head>
         <body>
           <Main />
