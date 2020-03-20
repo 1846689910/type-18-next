@@ -45,7 +45,6 @@ export default function Map() {
   } = useContext(LocalContext);
   const mapRef = useRef();
   useEffect(() => {
-    console.log(mapRef);
     if (mapRef.current && !map) setMap(initMap(mapRef.current));
   }, [mapRef]);
   useEffect(() => {
@@ -56,7 +55,6 @@ export default function Map() {
   useEffect(() => {
     if (map && landmarks) {
       if (markers) markers.forEach(x => map.removeLayer(x));
-      console.log(landmarks);
       setMarkers(configureMarkers(map, landmarks, setSelectedMarkerOption));
     }
   }, [map, landmarks]);

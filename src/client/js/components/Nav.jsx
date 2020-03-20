@@ -55,7 +55,6 @@ export default function Nav() {
   const classes = useStyles();
   const counter = useSelector(state => state.counter);
   const router = useRouter();
-  console.log(router);
   const tabs = [
     { path: "/", label: "Home" },
     { path: "/demo1", label: "Demo1" },

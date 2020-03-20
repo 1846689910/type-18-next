@@ -48,7 +48,6 @@ export function ReactSelectDemo() {
     })();
   }, []);
   const handleChange = (selected, action) => {
-    console.log(action);
     dispatch(setSelectedOptionAction(selected));
   };
   return (

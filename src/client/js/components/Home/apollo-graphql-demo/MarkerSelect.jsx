@@ -102,7 +102,6 @@ function CustomOption({ children, ...props }) {
   const handleDelete = e => {
     e.stopPropagation();
     const { id } = landmarks.find(x => x.name === label);
-    console.log(id);
     deleteLandmark({ variables: { id } });
   };
   return (

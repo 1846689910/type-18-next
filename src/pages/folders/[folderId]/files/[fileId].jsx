@@ -7,7 +7,6 @@ import { Container, Grid } from "@material-ui/core";
 
 const FileId = ({ router }) => {
   const { folderId, fileId } = router.query;
-  console.log(router);
   return (
     <Fragment>
       <Nav />

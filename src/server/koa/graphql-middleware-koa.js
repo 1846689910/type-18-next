@@ -9,7 +9,6 @@ const { typeDefs, resolvers } = require("../utils/graphql");
  */
 const graphqlMiddlewareKoa = async ctx => {
   const { query } = ctx.request.body;
-  console.log(query);
   ctx.body = await graphql(schema, query, root);
 };
 
