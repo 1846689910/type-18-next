@@ -6,6 +6,11 @@ import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { theme } from "../client/styles/theme";
 import "../client/styles/App.css"; // TODO: after using `withCss`, Link routing will break. Can be fix to work by importing even an empty css file in `_app.js`
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
+import fetch from "node-fetch";
+
+global.fetch = fetch;
 
 class _App extends App {
   componentDidMount() {
@@ -15,18 +20,22 @@ class _App extends App {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }
+  static graphqlUri = "/graphql"; // default value
   render() {
     const { Component, pageProps, store } = this.props;
+    const apolloClient = new ApolloClient({
+      uri: _App.graphqlUri
+    });
     return (
-      <>
-        <Provider store={store}>
+      <Provider store={store}>
+        <ApolloProvider client={apolloClient}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             {/* Kickstart an elegant, consistent, and simple baseline to build upon. */}
             <Component {...pageProps} />
           </ThemeProvider>
-        </Provider>
-      </>
+        </ApolloProvider>
+      </Provider>
     );
   }
 }

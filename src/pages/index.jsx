@@ -9,7 +9,7 @@ import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";
 import ModuledStyleDemo from "../client/js/components/Home/ModuledStyleDemo";
 import DynamicImportDemo from "../client/js/components/Home/DynamicImportDemo";
-import RecomposeDemo from "../client/js/components/Home/RecomposeDemo";
+import ApolloGraphqlDemo from "../client/js/components/Home/apollo-graphql-demo";
 import Promise from "bluebird";
 
 export default function Index(props) {
@@ -26,8 +26,8 @@ export default function Index(props) {
           <DemoWrapper title="Dynamic Import Demo">
             <DynamicImportDemo />
           </DemoWrapper>
-          <DemoWrapper title="Recompose Demo">
-            <RecomposeDemo />
+          <DemoWrapper title="Apollo Graphql Demo">
+            <ApolloGraphqlDemo />
           </DemoWrapper>
         </Grid>
       </Container>
@@ -38,15 +38,19 @@ Index.propTypes = {
   shows: PropTypes.array
 };
 
-Index.getInitialProps = async function(context) {
-  console.log("context:\n>>>>>>>");
-  console.log(context);
-  console.log("<<<<<<");
+/**
+ * @description dev server end-point for path `/`, please check https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
+ * @param {Object} context { params, req, res, query, preview, previewData }
+ */
+export async function getServerSideProps(context){
+  const { params, req, query } = context;
+  console.log([req.url, req.method, params, query]);
   const data = await Promise.resolve([{ show: 1 }, { show: 2 }, { show: 3 }]);
-
   console.log(`Show data fetched on server side. Count: ${data.length}`);
-
   return {
-    shows: data.map(entry => entry.show)
+    props: {  // will be passed to the page component as props
+      shows: data.map(entry => entry.show)
+    }
   };
-};
+}
+// Index.getInitialProps is deprecated

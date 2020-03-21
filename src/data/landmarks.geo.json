@@ -1,0 +1,112 @@
+[
+  {
+    "id": "0",
+    "name": "Transamerica Pyramid",
+    "address": "600 Montgomery St, San Francisco, CA 94111",
+    "url": "https://www.pyramidcenter.com/",
+    "description": "Tall, landmark building shaped like a narrow pyramid & housing a visitor center & a gift shop.",
+    "coordinates": [
+      -122.402829,
+      37.795187
+    ]
+  },
+  {
+    "id": "1",
+    "name": "Space Needle",
+    "address": "400 Broad St, Seattle, WA 98109",
+    "url": "https://www.spaceneedle.com/",
+    "description": "Iconic, 605-ft.-tall spire at the Seattle Center, with an observation deck & a rotating restaurant.",
+    "coordinates": [
+      -122.349329,
+      47.620526
+    ]
+  },
+  {
+    "id": "2",
+    "name": "Calgary Tower",
+    "address": "101 9 Ave SW, Calgary, AB T2P 1J9, Canada",
+    "url": "https://www.calgarytower.com/",
+    "description": "Curved, 630-ft.-tall monument celebrating US western expansion, with views from the top & a museum.",
+    "coordinates": [
+      -114.063123,
+      51.044292
+    ]
+  },
+  {
+    "id": "3",
+    "name": "The Gateway Arch",
+    "address": "11 N 4th St, St. Louis, MO 63102",
+    "url": "https://www.gatewayarch.com/",
+    "description": "Park honoring Jefferson's role in western expansion, featuring the Gateway Arch & visitors' center.",
+    "coordinates": [
+      -90.184766,
+      38.624641
+    ]
+  },
+  {
+    "id": "4",
+    "name": "Wills Tower",
+    "address": "233 S Wacker Dr, Chicago, IL 60606",
+    "url": "https://www.willistower.com/",
+    "description": "Iconic, 110-story skyscraper featuring expansive views of Chicago from its 103rd-story Skydeck.",
+    "coordinates": [
+      -87.635848,
+      41.878846
+    ]
+  },
+  {
+    "id": "5",
+    "name": "The Alamo",
+    "address": "300 Alamo Plaza, San Antonio, TX 78205",
+    "url": "https://www.thealamo.org/",
+    "description": "Small, shrinelike fortress & monument to Texas history with a museum, artifacts, gardens & more.",
+    "coordinates": [
+      -98.486141,
+      29.425948
+    ]
+  },
+  {
+    "id": "6",
+    "name": "City Gallery in the Historic Water Tower",
+    "address": "806 Michigan Ave, Chicago, IL 60611",
+    "url": "https://www.chicago.gov/city/en/depts/dca/supp_info/city_gallery_in_thehistoricwatertower.html",
+    "description": "Chicago-focused gallery, specializing in photos, inside a 19th-century Gothic limestone landmark.",
+    "coordinates": [
+      -87.624354,
+      41.89713
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Toronto City Hall",
+    "address": "100 Queen St W, Toronto, ON M5H 2N2, Canada",
+    "url": "https://www.toronto.ca/services-payments/venues-facilities-bookings/booking-city-facilities/civic-centres/city-hall/",
+    "description": "Contemporary, iconic structure housing the mayor's office & offering tours.",
+    "coordinates": [
+      -79.384003,
+      43.653597
+    ]
+  },
+  {
+    "id": "8",
+    "name": "The Metropolitan Museum of Art",
+    "address": "1000 5th Ave, New York, NY 10028",
+    "url": "https://www.metmuseum.org/",
+    "description": "A grand setting for one of the world's greatest collections of art, from ancient to contemporary.",
+    "coordinates": [
+      -73.962406,
+      40.779009
+    ]
+  },
+  {
+    "id": "9",
+    "name": "Lincoln Memorial",
+    "address": "2 Lincoln Memorial Cir NW, Washington, DC 20037",
+    "url": "https://www.nps.gov/linc/index.htm",
+    "description": "Parthenon-inspired tribute to Abraham Lincoln with a 19-ft. marble statue, murals & reflecting pool.",
+    "coordinates": [
+      -77.049787,
+      38.889272
+    ]
+  }
+]
