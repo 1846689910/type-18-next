@@ -12,9 +12,9 @@ const useStyles = makeStyles({
   }
 });
 
-const Row = ({ data, index, style }) => (  // eslint-disable-line
-  <MenuItem style={style}>Row {index}</MenuItem>
-);
+const Row = ({ data, index, style }) => { // eslint-disable-line
+  return <MenuItem style={style}>Row {index}</MenuItem>;
+};
 Row.propTypes = {
   data: PropTypes.object,
   index: PropTypes.number,
