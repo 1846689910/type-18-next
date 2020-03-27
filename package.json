@@ -1,6 +1,6 @@
 {
   "name": "type-18-next",
-  "version": "1.0.0",
+  "version": "1.1.58",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -60,6 +60,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jsdom": "^16.2.1",
     "jsdom-global": "^3.0.2",
+    "json2mq": "^0.2.0",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
     "koa-router": "^8.0.8",
