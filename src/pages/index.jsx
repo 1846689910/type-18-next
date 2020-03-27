@@ -42,9 +42,8 @@ Index.propTypes = {
  * @description dev server end-point for path `/`, please check https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
  * @param {Object} context { params, req, res, query, preview, previewData }
  */
-export async function getServerSideProps(context){
-  const { params, req, query } = context;
-  console.log([req.url, req.method, params, query]);
+export async function getStaticProps(context){
+  console.log(context);
   const data = await Promise.resolve([{ show: 1 }, { show: 2 }, { show: 3 }]);
   console.log(`Show data fetched on server side. Count: ${data.length}`);
   return {

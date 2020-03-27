@@ -32,7 +32,7 @@ module.exports = compose(
       "/demo2/[counter]": { page: "/demo2/[counter]" },
       "/folders/[folderId]": { page: "/folders/[folderId]" },
       "/folders/[folderId]/files/[fileId]": { page: "/folders/[folderId]/files/[fileId]" },
-      // "/graphql": { page: "/graphql" }
+      "/graphql": { page: "/graphql" }
     };
   },
   distDir: "dist"

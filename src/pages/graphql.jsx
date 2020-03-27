@@ -23,9 +23,10 @@ Graphql.propTypes = {
  * @param {Object} context
  * @returns {Object} the component props
  */
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { req, res } = context;
   const body = await json(req);
+  console.log(body);
   await handler(req, res);
   return {
     props: {} // will be passed to the page component as props
