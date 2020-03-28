@@ -7,7 +7,7 @@ import TabButton from "./TabButton";
 import TabButtonGroup from "./TabButtonGroup";
 import ForNextJsCustomHead from "./ForNextJsCustomHead";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1
   },
@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   folders_btn: {
     width: "20px"
   }
-}));
+});
 
 export default function Nav() {
   const classes = useStyles();
