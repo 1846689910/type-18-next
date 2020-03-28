@@ -8,6 +8,7 @@ import { theme } from "../client/styles/theme";
 import "../client/styles/App.css"; // TODO: after using `withCss`, Link routing will break. Can be fix to work by importing even an empty css file in `_app.js`
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { MediaQueryProvider } from "../client/js/components/MediaQueryContext";
 import fetch from "node-fetch";
 
 global.fetch = fetch;
@@ -32,7 +33,9 @@ class _App extends App {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             {/* Kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <Component {...pageProps} />
+            <MediaQueryProvider>
+              <Component {...pageProps} />
+            </MediaQueryProvider>
           </ThemeProvider>
         </ApolloProvider>
       </Provider>
