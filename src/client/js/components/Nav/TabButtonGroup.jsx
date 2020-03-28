@@ -100,7 +100,9 @@ FolderDropdown.propTypes = {
 const useStyles = makeStyles(theme => ({
   subMenuItem: ({ query, fileId }) => ({
     background:
-      query && query.fileId === `${fileId}` ? theme.palette.secondary.main : ""
+      query && query.fileId === `${fileId}` ? theme.palette.secondary.main : "",
+    color: query && query.fileId === `${fileId}` ? "white" : "",
+    fontWeight: "bold"
   })
 }));
 
