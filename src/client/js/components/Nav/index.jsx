@@ -35,11 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
   folders_btn: {
     width: "20px"
-  },
-  subMenuItem: ({ query, fileId }) => ({
-    background:
-      query && query.fileId === `${fileId}` ? theme.palette.secondary.main : ""
-  })
+  }
 }));
 
 export default function Nav() {
