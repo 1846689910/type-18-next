@@ -40,7 +40,7 @@ Index.propTypes = {
 
 /**
  * @description dev server end-point for path `/`, please check https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
- * @param {Object} context { params, req, res, query, preview, previewData }
+ * @param {Object} context { env }
  */
 export async function getStaticProps(context){
   console.log(context);

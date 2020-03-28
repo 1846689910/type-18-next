@@ -20,10 +20,10 @@ Graphql.propTypes = {
 
 /**
  * @description for /graphql of micro server
- * @param {Object} context
+ * @param {Object} context { params, req, res, query, preview, previewData }
  * @returns {Object} the component props
  */
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { req, res } = context;
   const body = await json(req);
   console.log(body);

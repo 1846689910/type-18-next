@@ -27,10 +27,12 @@ export default function Demo1(props) {
 Demo1.propTypes = {
   initObj: PropTypes.object
 };
-Demo1.getInitialProps = async context => {
-  // eslint-disable-line
+// getInitialProps deprecated
+export async function getStaticProps() {
   const message = await Promise.resolve("Hello");
   return {
-    initObj: { message }
+    props: {
+      initObj: { message }
+    }
   };
-};
+}
