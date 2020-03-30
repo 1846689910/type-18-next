@@ -28,7 +28,10 @@ export function MediaQueryProvider({ children }) {
     "4K": useMediaQuery(json2mq({ minWidth: "1441px" }))
   };
   const media = Object.keys(mediaQuery).find(_ => mediaQuery[_]);
-  return <Provider value={{ mediaQuery, media }}>{children}</Provider>;
+  const isMobile = [QUERY.MOBILE_S, QUERY.MOBILE_M, QUERY.MOBILE_L].some(_ => media === _);
+  const isLaptop = media === QUERY.LAPTOP || QUERY.LAPTOP_L;
+  const isTablet = media === QUERY.TABLET;
+  return <Provider value={{ mediaQuery, media, isMobile, isLaptop, isTablet }}>{children}</Provider>;
 }
 MediaQueryProvider.propTypes = {
   children: PropTypes.oneOfType([

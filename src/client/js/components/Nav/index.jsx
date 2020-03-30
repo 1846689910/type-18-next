@@ -1,11 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import { useSelector } from "react-redux";
-import { Container, Grid, AppBar, makeStyles } from "@material-ui/core";
+import { Container, Grid, AppBar, makeStyles, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
 import Title from "./Title";
 import TabButton from "./TabButton";
 import TabButtonGroup from "./TabButtonGroup";
 import ForNextJsCustomHead from "./ForNextJsCustomHead";
+import MobileTabButton from "./MobileTabButton";
+import MediaQueryContext from "../MediaQueryContext";
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +24,8 @@ const useStyles = makeStyles({
   },
   container_grid: {
     width: "100%",
-    height: "50px"
+    height: "50px",
+    position: "relative"
   },
   btnGroup: {
     margin: "0 20px",
@@ -35,6 +38,13 @@ const useStyles = makeStyles({
   },
   folders_btn: {
     width: "20px"
+  },
+  innerGrid: {
+    position: "absolute"
+  },
+  innerSub: {
+    fontSize: "12px",
+    marginLeft: "5px"
   }
 });
 
@@ -64,10 +74,35 @@ export default function Nav() {
     }
     router.push(path, asString);
   };
+  const { media, isMobile, isTablet } = useContext(MediaQueryContext);
+  let inner;
+  if (isMobile || isTablet) {
+    inner = (
+      <Fragment>
+        <MobileTabButton {...{ classes, tabs, handleClick: tabButtonClick }} />
+        <Grid container justify="center" className={classes.innerGrid}>
+          <Typography variant="h6">
+            <strong>
+              Type 18 hek<sub className={classes.innerSub}>{media}</sub>
+            </strong>
+          </Typography>
+        </Grid>
+      </Fragment>
+    );
+  } else {
+    inner = (
+      <Grid container justify="center">
+        {tabs.map((x, i) => {
+          const TabBtn = x.routes ? TabButtonGroup : TabButton;
+          return <TabBtn route={x} classes={classes} key={i} handleClick={tabButtonClick} />;
+        })}
+      </Grid>
+    );
+  }
   return (
     <Fragment>
       <ForNextJsCustomHead asPath={router.asPath} />
-      <Title classes={classes} />
+      {!isMobile && !isTablet && <Title classes={classes} />}
       <AppBar position="static" className={classes.root}>
         <Container maxWidth="md">
           <Grid
@@ -75,19 +110,7 @@ export default function Nav() {
             className={classes.container_grid}
             alignItems="center"
           >
-            <Grid container justify="center">
-              {tabs.map((x, i) => {
-                const TabBtn = x.routes ? TabButtonGroup : TabButton;
-                return (
-                  <TabBtn
-                    route={x}
-                    key={i}
-                    handleClick={tabButtonClick}
-                    classes={classes}
-                  />
-                );
-              })}
-            </Grid>
+            {inner}
           </Grid>
         </Container>
       </AppBar>
