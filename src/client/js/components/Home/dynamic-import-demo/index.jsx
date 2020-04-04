@@ -10,13 +10,13 @@ const ReactSelectDemo = dynamic(
       <Typography variant="h6">
         {"<ReactSelectDemo/>"} is loading ...
       </Typography>
-    )
+    ),
   }
 );
 const ReactWindowDemo = dynamic(() => import("./ReactWindowDemo"), {
   loading: () => (
     <Typography variant="h6">{"<ReactWindowDemo/>"} is loading ...</Typography>
-  )
+  ),
 });
 
 export default () => (
