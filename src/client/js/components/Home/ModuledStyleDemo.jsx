@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../../styles/App.scss";
 import "../../../styles/App.css";
 import "../../../styles/App.less";
@@ -7,23 +7,28 @@ import css1 from "../../../styles/moduled/App.module.css";
 import less1 from "../../../styles/moduled/App.module.less";
 import scss1 from "../../../styles/moduled/App.module.scss";
 import stylus1 from "../../../styles/moduled/App.module.styl";
-import { Grid } from "@material-ui/core";
+import { Grid, styled } from "@material-ui/core";
+import MediaQueryContext from "../MediaQueryContext";
+
+const CenteredGrid = styled(Grid)({ textAlign: "center" });
 
 export default function ModuledStyleDemo() {
+  const { isTablet, isMobile } = useContext(MediaQueryContext);
+  const itemProps = isMobile ? { xs: 12 } : isTablet ? { xs: 6 } : {};
   return (
     <Grid container justify="space-evenly">
-      <Grid item>
+      <CenteredGrid item {...itemProps}>
         <strong className={css1.css}>CSS Module + CSS</strong>
-      </Grid>
-      <Grid item>
+      </CenteredGrid>
+      <CenteredGrid item {...itemProps}>
         <strong className={scss1.scss}>CSS Module + SCSS</strong>
-      </Grid>
-      <Grid item>
+      </CenteredGrid>
+      <CenteredGrid item {...itemProps}>
         <strong className={less1.less}>CSS Module + LESS</strong>
-      </Grid>
-      <Grid item>
+      </CenteredGrid>
+      <CenteredGrid item {...itemProps}>
         <strong className={stylus1.stylus}>CSS Module + STYLUS</strong>
-      </Grid>
+      </CenteredGrid>
     </Grid>
   );
 }
