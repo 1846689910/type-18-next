@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   setSelectOptionsAction,
-  setSelectedOptionAction
-} from "../../settings/actions";
+  setSelectedOptionAction,
+} from "../../../settings/actions";
 import { useSelector, useDispatch } from "react-redux";
 import Select, { components } from "react-select";
 import { Grid, makeStyles } from "@material-ui/core";
@@ -11,15 +11,15 @@ import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 const useStyles = makeStyles({
   outer: {
-    margin: "10px 0"
+    margin: "10px 0",
   },
-  label: attr => ({
-    color: attr.color
+  label: (attr) => ({
+    color: attr.color,
   }),
-  optionFiber: attr => ({
+  optionFiber: (attr) => ({
     fontSize: "14px",
-    color: attr.isDisabled ? "gray" : attr.color
-  })
+    color: attr.isDisabled ? "gray" : attr.color,
+  }),
 });
 
 const colourOptions = async () => [
@@ -32,27 +32,27 @@ const colourOptions = async () => [
   { value: "green", label: "Green", color: "#36B37E" },
   { value: "forest", label: "Forest", color: "#00875A" },
   { value: "slate", label: "Slate", color: "#253858" },
-  { value: "silver", label: "Silver", color: "#666666" }
+  { value: "silver", label: "Silver", color: "#666666" },
 ];
 
 export function ReactSelectDemo() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const selectOptions = useSelector(state => state.selectOptions);
-  const selectedOption = useSelector(state => state.selectedOption);
+  const selectOptions = useSelector((state) => state.selectOptions);
+  const selectedOption = useSelector((state) => state.selectedOption);
   useEffect(() => {
     (async () => {
       const _options = await colourOptions();
       dispatch(setSelectOptionsAction(_options));
-      dispatch(setSelectedOptionAction(_options.filter(_ => _.isFixed)));
+      dispatch(setSelectedOptionAction(_options.filter((_) => _.isFixed)));
     })();
   }, []);
-  const handleChange = (selected, action) => {
+  const handleChange = (selected, action) => {  // eslint-disable-line
     dispatch(setSelectedOptionAction(selected));
   };
   return (
     <Grid className={classes.outer} container justify="center">
-      <Grid item xs={4}>
+      <Grid item xs={4} container justify="center">
         <Select
           isMulti
           value={selectedOption.value}
@@ -62,9 +62,15 @@ export function ReactSelectDemo() {
           classNamePrefix="select"
           maxMenuHeight={210}
           onChange={handleChange}
+          styles={{
+            container: (base) => ({
+              ...base,
+              minWidth: "300px",
+            }),
+          }}
           components={{
             MultiValueLabel: CustomMultiValueLabel,
-            Option: CustomOption
+            Option: CustomOption,
           }}
         />
       </Grid>
@@ -84,9 +90,9 @@ CustomMultiValueLabel.propTypes = {
   data: PropTypes.object,
   props: PropTypes.shape({
     data: PropTypes.shape({
-      color: PropTypes.string
-    })
-  })
+      color: PropTypes.string,
+    }),
+  }),
 };
 function CustomOption({ children, ...props }) {
   const classes = useStyles(props.data);
@@ -106,5 +112,5 @@ function CustomOption({ children, ...props }) {
 CustomOption.propTypes = {
   children: PropTypes.string,
   data: PropTypes.object,
-  props: PropTypes.object
+  props: PropTypes.object,
 };

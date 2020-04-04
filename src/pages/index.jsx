@@ -8,7 +8,7 @@ import { Container, Grid } from "@material-ui/core";
 import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";
 import ModuledStyleDemo from "../client/js/components/Home/ModuledStyleDemo";
-import DynamicImportDemo from "../client/js/components/Home/DynamicImportDemo";
+import DynamicImportDemo from "../client/js/components/Home/dynamic-import-demo";
 import ApolloGraphqlDemo from "../client/js/components/Home/apollo-graphql-demo";
 import Promise from "bluebird";
 
