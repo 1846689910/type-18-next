@@ -52,7 +52,7 @@ export function ReactSelectDemo() {
   };
   return (
     <Grid className={classes.outer} container justify="center">
-      <Grid item xs={4}>
+      <Grid item xs={4} container justify="center">
         <Select
           isMulti
           value={selectedOption.value}
@@ -62,6 +62,12 @@ export function ReactSelectDemo() {
           classNamePrefix="select"
           maxMenuHeight={210}
           onChange={handleChange}
+          styles={{
+            container: (base) => ({
+              ...base,
+              minWidth: "300px",
+            }),
+          }}
           components={{
             MultiValueLabel: CustomMultiValueLabel,
             Option: CustomOption,
