@@ -9,6 +9,7 @@ import LocalContext from "./LocalContext";
 import Promise from "bluebird";
 import { initLatLng, initZoom } from "./Map";
 import Landmark from "../../../models/Landmark";
+import MediaQueryContext from "../../MediaQueryContext";
 
 const useStyles = makeStyles({
   markerSelect: {
@@ -62,6 +63,8 @@ export default function MarkerSelect() {
     marker.fire("click");
     setSelectedMarkerOption(selected);
   };
+  const { isTablet, isMobile } = useContext(MediaQueryContext);
+  const gXs = isMobile ? 10 : isTablet ? 8 : 6;
   return (
     <Grid
       item
@@ -70,7 +73,7 @@ export default function MarkerSelect() {
       justify="flex-start"
       className={classes.markerSelect}
     >
-      <Grid item xs={5}>
+      <Grid item xs={gXs}>
         <Select
           value={selectedMarkerOption}
           options={landmarkOptions}
