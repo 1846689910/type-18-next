@@ -37,7 +37,7 @@
     "@zeit/next-stylus": "^1.0.1",
     "apollo-boost": "^0.4.7",
     "apollo-server-express": "^2.11.0",
-    "apollo-server-hapi": "^2.11.0",
+    "apollo-server-hapi": "^2.14.2",
     "apollo-server-koa": "^2.11.0",
     "apollo-server-micro": "^2.11.0",
     "babel-eslint": "^10.1.0",
