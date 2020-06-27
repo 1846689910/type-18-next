@@ -1,4 +1,14 @@
-# type-18-next
+<h1>type-18-next</h1>
+
+- [development](#development)
+- [build and export](#build-and-export)
+- [analyze bundle structure](#analyze-bundle-structure)
+- [**Browser Automation**](#browser-automation)
+- [Test](#test)
+- [run with self defined server](#run-with-self-defined-server)
+- [**Lint**](#lint)
+- [**Develop**](#develop)
+  - [**Apollo + GraphQL Demo structure**](#apollo--graphql-demo-structure)
 
 ## development
 ```bash
@@ -47,7 +57,7 @@ yarn run browser-automation -chrome
 
 <img src="./doc/images/yarn-ba.gif" alt="demo browser automation" width="80%"/>
 
-## test
+## Test
 
 ```bash
 npm test
@@ -71,6 +81,16 @@ OR
 yarn run express
 yarn run hapi
 yarn run koa
+```
+
+## **Lint**
+
+use Eslint for code formatting
+
+```bash
+npm run lint
+# OR
+yarn run lint
 ```
 
 ## **Develop**
