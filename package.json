@@ -15,7 +15,7 @@
     "express": "npm run be && node src/server/express",
     "koa": "npm run be && node src/server/koa",
     "hapi": "npm run be && node src/server/hapi",
-    "lint": "eslint src/* --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint src/* --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern"
   },
   "keywords": [],
   "author": "",
