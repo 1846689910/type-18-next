@@ -2481,15 +2481,15 @@ apollo-server-express@^2.11.0:
     subscriptions-transport-ws "^0.9.16"
     type-is "^1.6.16"
 
-apollo-server-hapi@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/apollo-server-hapi/-/apollo-server-hapi-2.11.0.tgz#b6954f5921500f8503e37db0cb1c3649a2784e76"
-  integrity sha512-YTV1DHtoxrKK1pUiOgZ6qoF2fP58Ep9sQEvpZRVFxoY7iAQBgIeTmhpgJpvfFi+0MViVKusLR82juogonfAW8g==
+apollo-server-hapi@^2.14.2:
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/apollo-server-hapi/-/apollo-server-hapi-2.14.2.tgz#f2573c5bb86716e78c47c579b1c09d6c0e64f31b"
+  integrity sha512-jI81UHlMLNT7+pPAnEeF69p1QrRtSHvXrOm2KPBbbBMkEAwlBqys7A0XEwd8XmveDqptLuE+bUvnp12Ocxh7hA==
   dependencies:
     "@apollographql/graphql-playground-html" "1.6.24"
     accept "^3.0.2"
-    apollo-server-core "^2.11.0"
-    apollo-server-types "^0.3.0"
+    apollo-server-core "^2.14.2"
+    apollo-server-types "^0.5.0"
     boom "^7.1.0"
     graphql-subscriptions "^1.0.0"
     graphql-tools "^4.0.0"
@@ -2518,15 +2518,15 @@ apollo-server-koa@^2.14.2:
     koa-router "^7.4.0"
     type-is "^1.6.16"
 
-apollo-server-micro@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/apollo-server-micro/-/apollo-server-micro-2.11.0.tgz#78e5b07863026bfcb5749a8f1c39ed1a3749b265"
-  integrity sha512-zJOKSnBjhSSCwFu/QmvwGu0pc6OGEDFIvRbrck+/QnM4mq5OEYHYd3MB9uYHtcjlDMOSMyLBccXYGTTEEZO4OQ==
+apollo-server-micro@^2.14.2:
+  version "2.14.2"
+  resolved "https://registry.yarnpkg.com/apollo-server-micro/-/apollo-server-micro-2.14.2.tgz#d4c735af26c82a3b0763bced054e6ff8d969231b"
+  integrity sha512-3r++AYlWwzFHFj8y8SX3mGuv6aaPy4QCZ5dVtNokORl2TabL4587ccU5OHQsqOObK/cypWDG4YhpkeKeC4xKsA==
   dependencies:
     "@apollographql/graphql-playground-html" "1.6.24"
     accept "^3.0.2"
-    apollo-server-core "^2.11.0"
-    apollo-server-types "^0.3.0"
+    apollo-server-core "^2.14.2"
+    apollo-server-types "^0.5.0"
     micro "^9.3.2"
 
 apollo-server-plugin-base@^0.9.0:
