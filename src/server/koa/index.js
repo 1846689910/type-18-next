@@ -19,7 +19,7 @@ app.prepare().then(() => {
 
   server.use(graphqlMiddlewareKoa2);
 
-  router.all("*", async ctx => {
+  router.all("/(.*)", async (ctx) => {  // breaking change from * to /(.*) match all routes from koa router 8 to 9
     await handle(ctx.req, ctx.res);
     ctx.respond = false;
   });
