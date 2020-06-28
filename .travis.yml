@@ -17,3 +17,4 @@ notifications:
       - eric14706@gmail.com
     on_success: change
     on_failure: always
+# use vercel for deployment
