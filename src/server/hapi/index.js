@@ -7,6 +7,7 @@ const {
   pathWrapper
 } = require("./handlers");
 const { apolloServerHapi } = require("./graphql-middleware-hapi");
+const Status = require("http-status");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -16,6 +17,14 @@ const server = new Hapi.Server({ port, host: "localhost" });
 app.prepare().then(async () => {
 
   await server.register(require("inert"));
+
+  server.route({
+    method: "GET",
+    path: "/alive",
+    handler: async (request, h) => {
+      return h.response().code(Status.OK);
+    },
+  });
 
   server.route({
     method: "GET",
