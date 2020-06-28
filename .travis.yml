@@ -1,6 +1,7 @@
 language: node_js
 node_js: 
   - 13.14.0
+  - 12.18.1
 
 cache: yarn
 
@@ -15,6 +16,6 @@ notifications:
   email:
     recipients:
       - eric14706@gmail.com
-    on_success: change
+    on_success: never
     on_failure: always
 # use vercel for deployment
