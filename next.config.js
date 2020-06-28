@@ -36,5 +36,5 @@ module.exports = compose(
       }
     };
   },
-  distDir: "dist"
+  // distDir: "dist"
 });
