@@ -2,6 +2,7 @@ const Koa = require("koa");
 const Router = require("koa-router");
 const next = require("next");
 const { graphqlMiddlewareKoa2 } = require("./graphql-middleware-koa");
+const Status = require("http-status");
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -12,10 +13,9 @@ app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
 
-  // router.get("/abc", async ctx => {
-  //   await app.render(ctx.req, ctx.res, "/abc", ctx.query);
-  //   ctx.respond = false;
-  // });
+  router.get("/alive", async (ctx) => {
+    ctx.status = Status.OK;
+  });
 
   server.use(graphqlMiddlewareKoa2);
 
