@@ -8,6 +8,7 @@
 - [run with self defined server](#run-with-self-defined-server)
 - [**Lint**](#lint)
 - [**Develop**](#develop)
+  - [**end points**](#end-points)
   - [**Apollo + GraphQL Demo structure**](#apollo--graphql-demo-structure)
 
 ## development
@@ -99,6 +100,19 @@ yarn run lint
   - dev server for each routing path use `async getServerSideProps`
 - The router and redux store, actions, reducers are defined in `./src/client/js/settings`
 - The entry file in server is `./src/server/index.js`
+
+### **end points**
+
+- development server
+
+the next.js use [micro](https://www.npmjs.com/package/micro) to be the dev server
+
+define the end points in `src/pages` and create file like `alive.jsx`, which will become `/alive`. Refer to [alive.jsx](./src/pages/alive.jsx) as an example
+
+- production server
+  - `src/server/express`
+  - `src/server/hapi`
+  - `src/server/koa`
 
 ### **Apollo + GraphQL Demo structure**
 
