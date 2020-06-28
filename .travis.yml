@@ -1,0 +1,20 @@
+language: node_js
+node_js: 
+  - 13.14.0
+
+cache: yarn
+
+install:
+  - yarn install
+
+script:
+  - yarn test
+  - yarn run be
+
+notifications:
+  email:
+    recipients:
+      - eric14706@gmail.com
+    on_success: change
+    on_failure: always
+# use vercel for deployment
