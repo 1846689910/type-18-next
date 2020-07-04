@@ -1,6 +1,6 @@
 {
   "name": "type-18-next",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,50 +12,62 @@
     "export": "next export",
     "be": "next build; next export",
     "analyze": "cross-env ANALYZE=true next build",
-    "express": "npm run be && node src/server/express",
-    "koa": "npm run be && node src/server/koa",
-    "hapi": "npm run be && node src/server/hapi",
+    "express": "node scripts/express",
+    "koa": "node scripts/koa",
+    "hapi": "node scripts/hapi",
     "lint": "eslint src/* --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
+    ]
+  },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
-    "@babel/register": "^7.10.3",
+    "@babel/register": "^7.10.4",
     "@hapi/hapi": "^19.1.1",
-    "@material-ui/core": "^4.10.2",
+    "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.10.0",
     "@next/bundle-analyzer": "^9.4.4",
     "@next/plugin-material-ui": "^9.4.4",
-    "@typescript-eslint/eslint-plugin": "^3.4.0",
-    "@typescript-eslint/parser": "^3.4.0",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-stylus": "^1.0.1",
     "apollo-boost": "^0.4.9",
-    "apollo-server-express": "^2.15.0",
-    "apollo-server-hapi": "^2.15.0",
-    "apollo-server-koa": "^2.15.0",
-    "apollo-server-micro": "^2.15.0",
+    "apollo-server-express": "^2.15.1",
+    "apollo-server-hapi": "^2.15.1",
+    "apollo-server-koa": "^2.15.1",
+    "apollo-server-micro": "^2.15.1",
     "babel-eslint": "^10.1.0",
     "chromedriver": "^83.0.0",
     "clsx": "^1.1.1",
     "cross-env": "^7.0.2",
     "css-loader": "^3.6.0",
-    "eslint": "^7.3.1",
+    "eslint": "^7.4.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "4.0.2",
-    "eslint-plugin-flowtype": "5.1.3",
+    "eslint-plugin-flowtype": "5.2.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-jsx-a11y": "6.3.1",
-    "eslint-plugin-react": "7.20.0",
-    "eslint-plugin-react-hooks": "^4.0.4",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.5",
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
-    "graphql": "^15.1.0",
+    "graphql": "^15.2.0",
     "http-status": "^1.4.2",
     "inert": "^5.1.3",
     "isomorphic-unfetch": "^3.0.0",
@@ -64,7 +76,7 @@
     "json2mq": "^0.2.0",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
-    "koa-router": "^9.0.1",
+    "koa-router": "^9.1.0",
     "leaflet": "^1.6.0",
     "less": "^3.11.3",
     "next": "^9.4.4",
@@ -92,17 +104,5 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "mocha": "^8.0.1",
     "sinon": "^9.0.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 2 chrome version",
-      "last 2 firefox version",
-      "last 2 safari version"
-    ]
   }
 }
