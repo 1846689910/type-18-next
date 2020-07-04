@@ -83,7 +83,7 @@ export default function Nav() {
         <Grid container justify="center" className={classes.innerGrid}>
           <Typography variant="h6">
             <strong>
-              Type 18 hek<sub className={classes.innerSub}>{media}</sub>
+              Type 18 next<sub className={classes.innerSub}>{media}</sub>
             </strong>
           </Typography>
         </Grid>
