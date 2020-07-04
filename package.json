@@ -12,9 +12,9 @@
     "export": "next export",
     "be": "next build; next export",
     "analyze": "cross-env ANALYZE=true next build",
-    "express": "npm run be && node src/server/express",
-    "koa": "npm run be && node src/server/koa",
-    "hapi": "npm run be && node src/server/hapi",
+    "express": "node scripts/express",
+    "koa": "node scripts/koa",
+    "hapi": "node scripts/hapi",
     "lint": "eslint src/* --ext .js,.jsx,.ts,.tsx --no-error-on-unmatched-pattern"
   },
   "keywords": [],
