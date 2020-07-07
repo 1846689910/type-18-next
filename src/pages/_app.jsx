@@ -6,6 +6,9 @@ import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { theme } from "../client/styles/theme";
 import "../client/styles/App.css"; // TODO: after using `withCss`, Link routing will break. Can be fix to work by importing even an empty css file in `_app.js`
+import "../client/styles/App.scss";
+import "../client/styles/App.less";
+import "../client/styles/App.styl";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { MediaQueryProvider } from "../client/js/components/MediaQueryContext";
