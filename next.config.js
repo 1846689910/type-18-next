@@ -22,7 +22,7 @@ module.exports = compose(
     importLoaders: 1,
     localIdentName: `${
       enableShortHash ? "" : "[name]__[local]___"
-    }"[hash:base64:5]"`
+    }[hash:base64:5]`
   },
   webpack: config => config,
   exportPathMap: async () => {
