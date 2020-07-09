@@ -1,8 +1,4 @@
 import React, { useContext } from "react";
-import "../../../styles/App.scss";
-import "../../../styles/App.css";
-import "../../../styles/App.less";
-import "../../../styles/App.styl";
 import css1 from "../../../styles/moduled/App.module.css";
 import less1 from "../../../styles/moduled/App.module.less";
 import scss1 from "../../../styles/moduled/App.module.scss";
@@ -18,16 +14,24 @@ export default function ModuledStyleDemo() {
   return (
     <Grid container justify="space-evenly">
       <CenteredGrid item {...itemProps}>
-        <strong className={css1.css}>CSS Module + CSS</strong>
+        <strong className={css1.css}>CSS Module</strong>
+        {" + "}
+        <strong className="css">CSS</strong>
       </CenteredGrid>
       <CenteredGrid item {...itemProps}>
-        <strong className={scss1.scss}>CSS Module + SCSS</strong>
+        <strong className={scss1.scss}>CSS Module</strong>
+        {" + "}
+        <strong className="scss">SCSS</strong>
       </CenteredGrid>
       <CenteredGrid item {...itemProps}>
-        <strong className={less1.less}>CSS Module + LESS</strong>
+        <strong className={less1.less}>CSS Module</strong>
+        {" + "}
+        <strong className="less">LESS</strong>
       </CenteredGrid>
       <CenteredGrid item {...itemProps}>
-        <strong className={stylus1.stylus}>CSS Module + STYLUS</strong>
+        <strong className={stylus1.stylus}>CSS Module</strong>
+        {" + "}
+        <strong className="stylus">STYLUS</strong>
       </CenteredGrid>
     </Grid>
   );

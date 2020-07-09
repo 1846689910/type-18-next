@@ -1,9 +1,5 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import "../client/styles/App.scss";
-import "../client/styles/App.css";
-import "../client/styles/App.less";
-import "../client/styles/App.styl";
 import { Container, Grid } from "@material-ui/core";
 import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";

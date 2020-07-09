@@ -1,6 +1,7 @@
 const { compose } = require("redux");
+const loaderUtils = require("loader-utils");
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true"
+  enabled: process.env.ANALYZE === "true",
 });
 const withCss = require("@zeit/next-css");
 const withSass = require("@zeit/next-sass");
@@ -14,17 +15,29 @@ module.exports = compose(
   withSass,
   withLess,
   withStylus,
-  withBundleAnalyzer
+  withBundleAnalyzer,
 )({
   // TODO: work same as `withCss(withBundleAnalyzer({...}))`
   cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
     localIdentName: `${
-      enableShortHash ? "" : "[name]__[local]___"
-    }"[hash:base64:5]"`
+      enableShortHash ? "" : "[name]__[local]"
+    }__[hash:base64:5]`,
+    getLocalIdent(loaderContext, localIdentName, localName, options) {
+      return [
+        ".module.css",
+        ".module.scss",
+        ".module.less",
+        ".module.styl",
+      ].some((x) => loaderContext.resourcePath.endsWith(x))
+        ? loaderUtils.interpolateName(loaderContext, localIdentName, { // webpack in-built hash library, check doc: https://github.com/webpack/loader-utils#interpolatename
+            content: localName,
+          })
+        : localName;
+    },
   },
-  webpack: config => config,
+  webpack: (config) => config,
   exportPathMap: async () => {
     return {
       "/": { page: "/" },
@@ -32,8 +45,8 @@ module.exports = compose(
       "/demo2/[counter]": { page: "/demo2/[counter]" },
       "/folders/[folderId]": { page: "/folders/[folderId]" },
       "/folders/[folderId]/files/[fileId]": {
-        page: "/folders/[folderId]/files/[fileId]"
-      }
+        page: "/folders/[folderId]/files/[fileId]",
+      },
     };
   },
 });
