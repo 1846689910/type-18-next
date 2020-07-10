@@ -144,6 +144,9 @@ import css1 from "../../../styles/moduled/App.module.css";
 
 import the external css CDN in `src/client/js/components/Nav/ForNextJsCustomHead.jsx`
 
+Notes:
+- for issue cannot enable pure css and moduled css simultaneously, maybe check discussion [here](https://github.com/vercel/next.js/discussions/14946)
+
 ### **Apollo + GraphQL Demo structure**
 
 - dev
