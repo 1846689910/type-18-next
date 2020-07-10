@@ -10,6 +10,11 @@ const withStylus = require("@zeit/next-stylus");
 
 const enableShortHash = true;
 
+const cssModuleRegex = /\.module\.css$/;
+const sassModuleRegex = /\.module\.(scss|sass)$/;
+const lessModuleRegex = /\.module\.less/;
+const stylusModuleRegex = /\.module\.styl$/;
+
 module.exports = compose(
   withCss,
   withSass,
@@ -26,12 +31,13 @@ module.exports = compose(
     }__[hash:base64:5]`,
     getLocalIdent(loaderContext, localIdentName, localName, options) {
       return [
-        ".module.css",
-        ".module.scss",
-        ".module.less",
-        ".module.styl",
-      ].some((x) => loaderContext.resourcePath.endsWith(x))
-        ? loaderUtils.interpolateName(loaderContext, localIdentName, { // webpack in-built hash library, check doc: https://github.com/webpack/loader-utils#interpolatename
+        cssModuleRegex,
+        sassModuleRegex,
+        lessModuleRegex,
+        stylusModuleRegex,
+      ].some((regex) => regex.test(loaderContext.resourcePath))
+        ? loaderUtils.interpolateName(loaderContext, localIdentName, {
+            // webpack in-built hash library, check doc: https://github.com/webpack/loader-utils#interpolatename
             content: localName,
           })
         : localName;
