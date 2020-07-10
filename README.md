@@ -7,14 +7,15 @@
 <h2>contents</h2>
 
 - [development](#development)
+- [production](#production)
 - [build and export](#build-and-export)
 - [analyze bundle structure](#analyze-bundle-structure)
 - [**Browser Automation**](#browser-automation)
 - [Test](#test)
-- [run with self defined server](#run-with-self-defined-server)
 - [**Lint**](#lint)
 - [**Develop**](#develop)
   - [**end points**](#end-points)
+  - [**stylesheets**](#stylesheets)
   - [**Apollo + GraphQL Demo structure**](#apollo--graphql-demo-structure)
 
 ## development
@@ -27,6 +28,23 @@ yarn run dev
 ```bash
 PORT=3000 npm start
 ```
+
+## production
+
+```bash
+npm run express
+npm run hapi
+npm run koa
+```
+
+OR
+
+```bash
+yarn run express
+yarn run hapi
+yarn run koa
+```
+
 
 ## build and export
 
@@ -74,22 +92,6 @@ yarn test
 - enzyme configuration in `test/mocha.config.js`
 - mocha configuration: `.mocharc.yml` include `test/mocha.config.js`
 
-## run with self defined server
-
-```bash
-npm run express
-npm run hapi
-npm run koa
-```
-
-OR
-
-```bash
-yarn run express
-yarn run hapi
-yarn run koa
-```
-
 ## **Lint**
 
 use Eslint for code formatting
@@ -119,6 +121,28 @@ define the end points in `src/pages` and create file like `alive.jsx`, which wil
   - `src/server/express`
   - `src/server/hapi`
   - `src/server/koa`
+
+### **stylesheets**
+
+- global stylesheet(CSS, SASS/SCSS, LESS, STYLUS)
+
+import the global stylesheet in `src/pages/_app.jsx`, like
+
+```jsx
+import "../client/styles/App.css";
+```
+
+- local stylesheet(stylesheets with css modules applied)
+
+import the moduled stylesheet in needed component, like in `src/client/js/components/Home/ModuledStyleDemo.jsx`
+
+```jsx
+import css1 from "../../../styles/moduled/App.module.css";
+```
+
+- css in header
+
+import the external css CDN in `src/client/js/components/Nav/ForNextJsCustomHead.jsx`
 
 ### **Apollo + GraphQL Demo structure**
 
