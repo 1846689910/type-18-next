@@ -28,13 +28,13 @@ export async function getServerSideProps(context) {
   const { req, res } = context;
   console.log([req.headers.host, req.url, req.method]);
   console.log(res);
+  res.setHeader("Access-Control-Allow-Origin", "*");
   if (req.method === "OPTIONS") {
     return send(res, OK);
   }
   const body = await json(req);
   console.log(`graphql body = ${JSON.stringify(body, null, 2)}`);
   await handler(req, res);
-  res.setHeader("Access-Control-Allow-Origin", "*");
   return {
     props: {}, // will be passed to the page component as props
   };
