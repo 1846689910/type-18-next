@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ApolloServer } from "apollo-server-micro";
 import { nextDevResolvers, typeDefs } from "../server/utils/graphql";
-import { json } from "micro";
+import { json, send } from "micro";
+import { OK } from "http-status";
 
 const apolloServer = new ApolloServer({
   resolvers: nextDevResolvers,
@@ -25,6 +26,10 @@ Graphql.propTypes = {
  */
 export async function getServerSideProps(context) {
   const { req, res } = context;
+  console.log([req.headers.host, req.url, req.method]);
+  if (req.method === "OPTIONS") {
+    return send(res, OK);
+  }
   const body = await json(req);
   console.log(`graphql body = ${JSON.stringify(body, null, 2)}`);
   await handler(req, res);
