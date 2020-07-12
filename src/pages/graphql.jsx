@@ -29,6 +29,7 @@ export async function getServerSideProps(context) {
   console.log([req.headers.host, req.url, req.method]);
   console.log(res);
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,POST");
   if (req.method === "OPTIONS") {
     return send(res, OK);
   }
