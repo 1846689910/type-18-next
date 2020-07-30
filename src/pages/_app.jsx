@@ -1,7 +1,7 @@
 import App from "next/app";
 import React from "react";
-import withReduxStore from "../client/js/settings/with-redux-store";
 import { Provider } from "react-redux";
+import { configureStore } from "../client/js/settings/store";
 import { ThemeProvider } from "@material-ui/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { theme } from "../client/styles/theme";
@@ -16,7 +16,11 @@ import fetch from "node-fetch";
 
 global.fetch = fetch;
 
-class _App extends App {
+export default class _App extends App {
+  constructor(props){
+    super(props);
+    this.store = configureStore();
+  }
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
@@ -26,12 +30,12 @@ class _App extends App {
   }
   static graphqlUri = "/graphql"; // default value
   render() {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps } = this.props;
     const apolloClient = new ApolloClient({
       uri: _App.graphqlUri
     });
     return (
-      <Provider store={store}>
+      <Provider store={this.store}>
         <ApolloProvider client={apolloClient}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -45,4 +49,3 @@ class _App extends App {
     );
   }
 }
-export default withReduxStore(_App);

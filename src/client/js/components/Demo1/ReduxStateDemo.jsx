@@ -7,6 +7,7 @@ const Btn = styled(Button)({ fontWeight: "bold" });
 
 export default function ReduxStateDemo() {
   const counter = useSelector(state => state.counter);
+  console.log(counter);
   const dispatch = useDispatch();
   return (
     <Grid container>
