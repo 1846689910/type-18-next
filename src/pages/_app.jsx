@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { useStore } from "../client/js/settings/store";
 import { ThemeProvider } from "@material-ui/styles";
@@ -35,34 +36,7 @@ export default function App({ Component, pageProps }) {
     </Provider>
   );
 }
-
-// export default class _App extends App {
-//   componentDidMount() {
-//     // Remove the server-side injected CSS.
-//     const jssStyles = document.querySelector("#jss-server-side");
-//     if (jssStyles) {
-//       jssStyles.parentElement.removeChild(jssStyles);
-//     }
-//   }
-//   static graphqlUri = "/graphql"; // default value
-//   render() {
-//     const { Component, pageProps } = this.props;
-//     const store = configureStore(pageProps.initialReduxState);
-//     const apolloClient = new ApolloClient({
-//       uri: _App.graphqlUri
-//     });
-//     return (
-//       <Provider store={store}>
-//         <ApolloProvider client={apolloClient}>
-//           <ThemeProvider theme={theme}>
-//             <CssBaseline />
-//             {/* Kickstart an elegant, consistent, and simple baseline to build upon. */}
-//             <MediaQueryProvider>
-//               <Component {...pageProps} />
-//             </MediaQueryProvider>
-//           </ThemeProvider>
-//         </ApolloProvider>
-//       </Provider>
-//     );
-//   }
-// }
+App.propTypes = {
+  Component: PropTypes.func,  // React.FunctionComponent
+  pageProps: PropTypes.object,
+};

@@ -14,8 +14,6 @@ export default function Demo2({ reason }) {
   const router = useRouter();
   useEffect(() => {
     const counter = parseInt(get(router, "query.counter", 0));
-    console.log(router);
-    console.log(counter);
     if (mainCounter !== counter && !isNaN(counter)) {
       dispatch(setCounterAction(counter));
     }
