@@ -1,4 +1,3 @@
-import App from "next/app";
 import React from "react";
 import { Provider } from "react-redux";
 import { useStore } from "../client/js/settings/store";
@@ -16,11 +15,11 @@ import fetch from "node-fetch";
 
 global.fetch = fetch;
 
-export default function App1({ Component, pageProps }){
-  const store = useStore(pageProps.initialReduxState);
+export default function App({ Component, pageProps }) {
+  const store = useStore();
   const graphqlUri = "/graphql"; // default value
   const apolloClient = new ApolloClient({
-    uri: graphqlUri
+    uri: graphqlUri,
   });
   return (
     <Provider store={store}>

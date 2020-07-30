@@ -30,7 +30,14 @@ export const initializeStore = (preloadedState) => {
   }
 
   // For SSG and SSR always create a new store
-  if (typeof window === "undefined") return _store;
+  const isServer = typeof window === "undefined";
+  if (isServer) return _store;
+
+  // Create store if unavailable on the client and set it on the window object
+  const __NEXT_REDUX_STORE__ = "__NEXT_REDUX_STORE__";
+  if (!window[__NEXT_REDUX_STORE__]) {
+    window[__NEXT_REDUX_STORE__] = configureStore(initialState);
+  }
   // Create the store once in the client
   if (!store) store = _store;
 
