@@ -11,6 +11,9 @@ install:
 script:
   - yarn test
   - yarn run be
+  - yarn run express
+  - yarn run hapi
+  - yarn run koa
 
 notifications:
   email:
