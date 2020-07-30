@@ -10,6 +10,7 @@ const { apolloServerHapi } = require("./graphql-middleware-hapi");
 const Status = require("http-status");
 
 const dev = process.env.NODE_ENV !== "production";
+const touch = process.env.touch;
 const app = next({ dev });
 const port = parseInt(process.env.PORT, 10) || 3000;
 const server = new Hapi.Server({ port, host: "localhost" });
@@ -57,6 +58,10 @@ app.prepare().then(async () => {
     await apolloServerHapi.applyMiddleware({ app: server });
     await server.start();
     console.log(`> Ready on http://localhost:${port}`);
+    if (touch && server.stop) {
+      server.stop();
+      process.exit(0);
+    }
   } catch (error) {
     console.log("Error starting server");
     console.log(error);

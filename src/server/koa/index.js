@@ -5,6 +5,7 @@ const { graphqlMiddlewareKoa2 } = require("./graphql-middleware-koa");
 const Status = require("http-status");
 
 const dev = process.env.NODE_ENV !== "production";
+const touch = process.env.touch;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -25,7 +26,11 @@ app.prepare().then(() => {
   });
 
   server.use(router.routes());
-  server.listen(port, () => {
+  const running = server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
+    if (touch && running.close) {
+      running.close();
+      process.exit(0);
+    }
   });
 });

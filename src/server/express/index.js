@@ -4,6 +4,7 @@ const { graphqlMiddleware2 } = require("./graphql-middleware");
 const Status = require("http-status");
 
 const dev = process.env.NODE_ENV !== "production";
+const touch = process.env.touch;
 const app = next({ dev });
 const handle = app.getRequestHandler();
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -20,8 +21,12 @@ app.prepare().then(() => {
 
   server.all("*", handle);
 
-  server.listen(port, err => {
+  const running = server.listen(port, err => {
     if (err) throw err;
     console.log(`> Ready on http://localhost:${port}`);
+    if (touch && running.close) {
+      running.close();
+      process.exit(0);
+    }
   });
 });
