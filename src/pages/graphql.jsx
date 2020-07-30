@@ -2,11 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { ApolloServer } from "apollo-server-micro";
 import { nextDevResolvers, typeDefs } from "../server/utils/graphql";
-import { json } from "micro";
+import { json, send } from "micro";
+import { OK } from "http-status";
 
 const apolloServer = new ApolloServer({
   resolvers: nextDevResolvers,
-  typeDefs
+  typeDefs,
 });
 const handler = apolloServer.createHandler({ path: "/graphql" });
 
@@ -15,7 +16,7 @@ export default function Graphql(props) {
   return <></>;
 }
 Graphql.propTypes = {
-  props: PropTypes.object
+  props: PropTypes.object,
 };
 
 /**
@@ -25,10 +26,13 @@ Graphql.propTypes = {
  */
 export async function getServerSideProps(context) {
   const { req, res } = context;
+  if (req.method === "OPTIONS") {
+    return send(res, OK);
+  }
   const body = await json(req);
   console.log(`graphql body = ${JSON.stringify(body, null, 2)}`);
   await handler(req, res);
   return {
-    props: {} // will be passed to the page component as props
+    props: {}, // will be passed to the page component as props
   };
 }
