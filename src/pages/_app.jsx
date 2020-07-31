@@ -40,3 +40,8 @@ App.propTypes = {
   Component: PropTypes.func,  // React.FunctionComponent
   pageProps: PropTypes.object,
 };
+App.getInitialProps = async () => {
+  console.log(`Needs server-side-rendered page with Automatic Static Optimization disabled for getting nonEmpty router.query in demo2\n
+      https://nextjs.org/docs/advanced-features/automatic-static-optimization#how-it-works`);
+  return {};
+};
