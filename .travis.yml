@@ -1,7 +1,7 @@
 language: node_js
 node_js: 
-  - 13.14.0
-  - 12.18.1
+  - 14.7.0
+  - 12.18.3
 
 cache: yarn
 
