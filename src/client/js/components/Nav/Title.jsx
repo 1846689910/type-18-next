@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { version } from "../../../../../package.json";
 import PropTypes from "prop-types";
-import { Container, Grid, Typography, Chip, styled } from "@material-ui/core";
+import { Container, Grid, Typography, Chip } from "@material-ui/core";
 import { useRouter } from "next/router";
 import MediaQueryContext, { QUERY } from "../MediaQueryContext";
 import SmartphoneIcon from "@material-ui/icons/Smartphone";
 import TabletMacIcon from "@material-ui/icons/TabletMac";
 import LaptopIcon from "@material-ui/icons/Laptop";
 import HdIcon from "@material-ui/icons/Hd";
-import { theme } from "../../../styles/theme";
+import AnnotatedText from "./AnnotatedText";
 
 export default function Title({ classes }) {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function Title({ classes }) {
         justify="space-between"
       >
         <Typography variant="h4" onClick={() => router.push("/")}>
-          Type 18 next<Version>v{version}</Version>
+          <AnnotatedText supNote={`v${version}`}>{"Type 18 next"}</AnnotatedText>
         </Typography>
         <MediaChip />
       </Grid>
@@ -31,14 +31,6 @@ export default function Title({ classes }) {
 Title.propTypes = {
   classes: PropTypes.object,
 };
-
-const Version = styled("sup")({
-  fontSize: "14px",
-  position: "relative",
-  top: "-5px",
-  fontWeight: "bold",
-  color: theme.palette.primary.main,
-});
 
 function MediaChip() {
   const { media } = useContext(MediaQueryContext);

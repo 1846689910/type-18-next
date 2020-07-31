@@ -1,4 +1,5 @@
 import React, { Fragment, useContext } from "react";
+import { version } from "../../../../../package.json";
 import { useSelector } from "react-redux";
 import { Container, Grid, AppBar, makeStyles, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
@@ -8,6 +9,7 @@ import TabButtonGroup from "./TabButtonGroup";
 import ForNextJsCustomHead from "./ForNextJsCustomHead";
 import MobileTabButton from "./MobileTabButton";
 import MediaQueryContext from "../MediaQueryContext";
+import AnnotatedText from "./AnnotatedText";
 
 const useStyles = makeStyles({
   root: {
@@ -83,7 +85,7 @@ export default function Nav() {
         <Grid container justify="center" className={classes.innerGrid}>
           <Typography variant="h6">
             <strong>
-              Type 18 next<sub className={classes.innerSub}>{media}</sub>
+              <AnnotatedText supNote={`v${version}`} subNote={media}>{"Type 18 next"}</AnnotatedText>
             </strong>
           </Typography>
         </Grid>
