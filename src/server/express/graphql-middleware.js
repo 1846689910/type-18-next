@@ -1,4 +1,4 @@
-const graphqlHTTP = require("express-graphql");
+const { graphqlHTTP } = require("express-graphql");
 const { schema, root } = require("../utils/graphql");
 const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("../utils/graphql");

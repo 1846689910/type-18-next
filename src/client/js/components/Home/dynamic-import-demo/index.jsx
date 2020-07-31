@@ -19,9 +19,10 @@ const ReactWindowDemo = dynamic(() => import("./ReactWindowDemo"), {
   ),
 });
 
-export default () => (
+const DynamicImportDemo = () => (
   <>
     <ReactSelectDemo />
     <ReactWindowDemo />
   </>
 );
+export default DynamicImportDemo;
