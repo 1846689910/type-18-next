@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type AnnotatedTextProps = {
   children: React.ReactElement | React.ReactElement[] | string;
-  supNote: string;
-  subNote: string;
+  supNote?: string;
+  subNote?: string;
 };
 
 export default function AnnotatedText({

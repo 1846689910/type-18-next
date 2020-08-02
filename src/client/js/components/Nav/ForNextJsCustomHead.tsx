@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Head from "next/head";
 
-export default function ForNextJsCustomHead({ asPath }) {
+export default function ForNextJsCustomHead({ asPath }: { asPath: string }) {
   const atHome = asPath === "/";
   return (
     <Head>
@@ -19,6 +18,3 @@ export default function ForNextJsCustomHead({ asPath }) {
     </Head>
   );
 }
-ForNextJsCustomHead.propTypes = {
-  asPath: PropTypes.string
-};
