@@ -6,9 +6,11 @@ import { get, isNaN } from "lodash";
 import Nav from "../../client/js/components/Nav";
 import { setCounterAction } from "../../client/js/settings/actions";
 
-export default function Demo2() {
+export default function Demo2(): React.ReactElement {
   const dispatch = useDispatch();
-  const mainCounter = useSelector((state) => state.counter.value);
+  const mainCounter = useSelector(
+    (state: { counter: { value: number } }) => state.counter.value,
+  );
   const router = useRouter();
   useEffect(() => {
     const counter = parseInt(get(router, "query.counter", 0));
