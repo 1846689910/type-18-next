@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Grid, Typography, Divider, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -15,7 +14,12 @@ const useStyles = makeStyles({
   }
 });
 
-export default function DemoWrapper({ children, title }) {
+type DemoWrapperProps = {
+  children: React.ReactElement | React.ReactElement[];
+  title: string;
+};
+
+export default function DemoWrapper({ children, title }: DemoWrapperProps) {
   const classes = useStyles();
   return (
     <Grid container>
@@ -29,8 +33,4 @@ export default function DemoWrapper({ children, title }) {
       {children}
     </Grid>
   );
-};
-DemoWrapper.propTypes = {
-  children: PropTypes.object,
-  title: PropTypes.string
-};
+}
