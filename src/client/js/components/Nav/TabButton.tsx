@@ -1,13 +1,22 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Button } from "@material-ui/core";
 import { useRouter } from "next/router";
+
+type TabButtonProps = {
+  route: {
+    key: string;
+    label: string;
+    path: string;
+  };
+  handleClick: (path: string) => void;
+  classes: Record<string, string>;
+};
 
 /**
  *
  * @description regular tab button
  */
-export default function TabButton({ route, handleClick, classes }) {
+export default function TabButton({ route, handleClick, classes }: TabButtonProps) {
   const router = useRouter();
   return (
     <Button
@@ -20,12 +29,3 @@ export default function TabButton({ route, handleClick, classes }) {
     </Button>
   );
 }
-TabButton.propTypes = {
-  route: PropTypes.shape({
-    key: PropTypes.string,
-    label: PropTypes.string,
-    path: PropTypes.string
-  }),
-  handleClick: PropTypes.func,
-  classes: PropTypes.object
-};
