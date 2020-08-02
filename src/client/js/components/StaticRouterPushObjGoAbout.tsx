@@ -5,7 +5,7 @@ const StaticRouterPushObjGoAbout = () => {
   const clickHandler = () =>
     Router.push({
       pathname: "/about",
-      query: { name: "use obj to go about" }
+      query: { name: "use obj to go about" },
     });
   return <button onClick={clickHandler}>UseObjGoAbout</button>;
 };

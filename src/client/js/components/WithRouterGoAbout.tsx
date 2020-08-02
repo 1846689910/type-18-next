@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withRouter } from "next/router";
+import { WithRouterProps } from "next/dist/client/with-router";
 
-const WithRouterGoAbout = ({ router }) => {
+const WithRouterGoAbout = ({ router }: WithRouterProps) => {
   console.log(`current pathname is ${router.pathname}`);
   const handler = () => {
     router.push({
@@ -11,9 +11,6 @@ const WithRouterGoAbout = ({ router }) => {
     });
   };
   return <button onClick={handler}>WithRouterGoAbout</button>;
-};
-WithRouterGoAbout.propTypes = {
-  router: PropTypes.object
 };
 
 export default withRouter(WithRouterGoAbout);
