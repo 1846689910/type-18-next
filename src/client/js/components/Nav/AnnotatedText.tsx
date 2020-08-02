@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core";
+import { Theme } from "@material-ui/core/styles";
 import MediaQueryContext from "../MediaQueryContext";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   span: {
     position: "relative",
   },
-  supNote: (attr) => ({
+  supNote: (attr: { isLightDevice: boolean }) => ({
     fontSize: attr.isLightDevice ? "12px" : "14px",
     position: "relative",
     top: "-5px",
@@ -20,7 +20,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AnnotatedText({ children, supNote, subNote }) {
+type AnnotatedTextProps = {
+  children: React.ReactElement | React.ReactElement[] | string;
+  supNote: string;
+  subNote: string;
+};
+
+export default function AnnotatedText({
+  children,
+  supNote,
+  subNote,
+}: AnnotatedTextProps) {
   const { isTablet, isMobile } = useContext(MediaQueryContext);
   const isLightDevice = isTablet || isMobile;
   const classes = useStyles({ isLightDevice });
@@ -32,12 +42,3 @@ export default function AnnotatedText({ children, supNote, subNote }) {
     </span>
   );
 }
-AnnotatedText.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
-  ]),
-  supNote: PropTypes.string,
-  subNote: PropTypes.string,
-};
