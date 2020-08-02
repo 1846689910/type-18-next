@@ -28,13 +28,15 @@ const useStyles = makeStyles({
 
 type MobileTabButtonProps = {
   classes: Record<string, string>;
-  tabs: {
-    routes: Record<string, unknown>[];
-  };
+  tabs: TabType[];
   handleClick: (x: string) => void;
 };
 
-export default function MobileTabButton({ classes, tabs, handleClick }) {
+export default function MobileTabButton({
+  classes,
+  tabs,
+  handleClick,
+}: MobileTabButtonProps) {
   const [anchor, setAnchor] = useState(null);
   const mobileClasses = useStyles();
   return (
@@ -71,11 +73,17 @@ export default function MobileTabButton({ classes, tabs, handleClick }) {
   );
 }
 
-type CustomMenuItemProps = {
-  tab: {
-    label: string;
+type TabType = {
+  label: string;
+  routes?: {
     path: string;
+    fileIds: number[];
   };
+  path: string;
+};
+
+type CustomMenuItemProps = {
+  tab: TabType;
   handleClick: (path: string) => void;
 };
 
@@ -91,20 +99,9 @@ const CustomMenuItem = React.forwardRef<never, CustomMenuItemProps>(
     );
   },
 );
-// CustomMenuItem.propTypes = {
-//   tab: PropTypes.object,
-//   handleClick: PropTypes.func
-// };
 
 type CustomMenuItemWithSubmenuProps = {
-  tab: {
-    label: string;
-    routes: {
-      path: string;
-      fileIds: number[];
-    };
-    path: string;
-  };
+  tab: TabType;
   setAnchor: (e: EventTarget) => void;
   handleClick: (path: string) => void;
 };
