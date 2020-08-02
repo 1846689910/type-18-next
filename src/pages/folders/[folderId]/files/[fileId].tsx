@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
 import { withRouter } from "next/router";
 import Nav from "../../../../client/js/components/Nav";
 import { Container, Grid } from "@material-ui/core";
+import { WithRouterProps } from "next/dist/client/with-router";
 
-const FileId = ({ router }) => {
+const FileId = ({ router }: WithRouterProps) => {
   const { folderId, fileId } = router.query;
   return (
     <Fragment>
@@ -19,8 +19,5 @@ const FileId = ({ router }) => {
       </Container>
     </Fragment>
   );
-};
-FileId.propTypes = {
-  router: PropTypes.object
 };
 export default withRouter(FileId);
