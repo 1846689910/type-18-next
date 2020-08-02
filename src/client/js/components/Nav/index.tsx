@@ -67,17 +67,17 @@ export default function Nav() {
     },
     { path: "/demo2/[counter]", label: "Demo2" }
   ];
-  const tabButtonClick = path => {
+  const tabButtonClick = (path: string) => {
     let asString = path;
     if (path === "/folders/[folderId]") {
-      asString = path.replace("[folderId]", 123);
+      asString = path.replace("[folderId]", "123");
     } else if (path === "/demo2/[counter]") {
       asString = path.replace("[counter]", counter.value);
     }
     router.push(path, asString);
   };
   const { media, isMobile, isTablet } = useContext(MediaQueryContext);
-  let inner;
+  let inner: React.ReactElement;
   if (isMobile || isTablet) {
     inner = (
       <Fragment>

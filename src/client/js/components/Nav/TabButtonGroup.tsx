@@ -11,10 +11,10 @@ import { useRouter } from "next/router";
 
 type TabButtonGroupProps = {
   route: {
-    key: string;
+    key?: string;
     path: string;
     label: string;
-    routes: {
+    routes?: {
       fileIds: number[];
       path: string;
     };

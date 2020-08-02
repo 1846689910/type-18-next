@@ -7,6 +7,11 @@ type TabButtonProps = {
     key: string;
     label: string;
     path: string;
+    routes?: {
+      fileIds: number[];
+      path: string;
+    };
+
   };
   handleClick: (path: string) => void;
   classes: Record<string, string>;
