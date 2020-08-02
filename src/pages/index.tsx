@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import PropTypes from "prop-types";
 import { Container, Grid } from "@material-ui/core";
 import Nav from "../client/js/components/Nav";
 import DemoWrapper from "../client/js/components/DemoWrapper";
@@ -8,7 +7,11 @@ import DynamicImportDemo from "../client/js/components/Home/dynamic-import-demo"
 import ApolloGraphqlDemo from "../client/js/components/Home/apollo-graphql-demo";
 import Promise from "bluebird";
 
-export default function Index(props) {
+type IndexProps = {
+  shows: number[]
+};
+
+export default function Index(props: IndexProps) {
   const { shows } = props;
   console.log(shows);
   return (
@@ -30,9 +33,6 @@ export default function Index(props) {
     </Fragment>
   );
 }
-Index.propTypes = {
-  shows: PropTypes.array
-};
 
 /**
  * @description dev server end-point for path `/`, please check https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
@@ -44,7 +44,7 @@ export async function getStaticProps(context){
   console.log(`Show data fetched on server side. Count: ${data.length}`);
   return {
     props: {  // will be passed to the page component as props
-      shows: data.map(entry => entry.show)
+      shows: data.map((entry: { show: number }) => entry.show)
     }
   };
 }
