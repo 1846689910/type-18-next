@@ -4,6 +4,7 @@ import { ApolloServer } from "apollo-server-micro";
 import { nextDevResolvers, typeDefs } from "../server/utils/graphql";
 import { json, send } from "micro";
 import { OK } from "http-status";
+import Http from "http";
 
 const apolloServer = new ApolloServer({
   resolvers: nextDevResolvers,
@@ -11,7 +12,7 @@ const apolloServer = new ApolloServer({
 });
 const handler = apolloServer.createHandler({ path: "/graphql" });
 
-export default function Graphql(props) {
+export default function Graphql(props: Record<string, unknown>) {
   console.log(props);
   return <></>;
 }
@@ -24,7 +25,7 @@ Graphql.propTypes = {
  * @param {Object} context { params, req, res, query, preview, previewData }
  * @returns {Object} the component props
  */
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: { req: Http.IncomingHttpHeaders, res: Http.ServerResponse }) {
   const { req, res } = context;
   if (req.method === "OPTIONS") {
     return send(res, OK);
