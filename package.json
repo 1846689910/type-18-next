@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha",
+    "test": "NODE_ENV=test TS_NODE_PROJECT=tsconfig.test.json mocha",
     "browser-automation": "node scripts/browser-automation",
     "dev": "next",
     "start": "next start -p $PORT",
@@ -98,11 +98,19 @@
     "stylus": "^0.54.8"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.12",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/mocha": "^8.0.1",
+    "@types/node": "^14.0.27",
+    "@types/react": "^16.9.44",
+    "@types/sinon": "^9.0.4",
     "babel-plugin-styled-components": "^1.11.1",
     "chai": "^4.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "mocha": "^8.0.1",
-    "sinon": "^9.0.2"
+    "sinon": "^9.0.2",
+    "typescript": "^3.9.7"
   }
 }
