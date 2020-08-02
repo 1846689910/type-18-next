@@ -10,10 +10,10 @@ install:
 
 script:
   - yarn test
-  - yarn run express --touch
-  - yarn run koa --touch
-  - yarn run hapi --touch
   - yarn run be
+  - yarn run express --skip-build --touch
+  - yarn run koa --skip-build --touch
+  - yarn run hapi --skip-build --touch
 
 notifications:
   email:
