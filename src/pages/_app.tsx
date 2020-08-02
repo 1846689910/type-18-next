@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Provider } from "react-redux";
 import { useStore } from "../client/js/settings/store";
 import { ThemeProvider } from "@material-ui/styles";
@@ -9,18 +8,25 @@ import "../client/styles/App.css"; // TODO: after using `withCss`, Link routing 
 import "../client/styles/App.scss";
 import "../client/styles/App.less";
 import "../client/styles/App.styl";
-import ApolloClient from "apollo-boost";
+import {ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { MediaQueryProvider } from "../client/js/components/MediaQueryContext";
-import fetch from "node-fetch";
 
-global.fetch = fetch;
+type AppProps = {
+  Component: () => React.ReactElement;
+  pageProps: Record<string, unknown>;
+};
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   const store = useStore();
   const graphqlUri = "/graphql"; // default value
-  const apolloClient = new ApolloClient({
+  const cache = new InMemoryCache();
+  const link = createHttpLink({
     uri: graphqlUri,
+  });
+  const apolloClient = new ApolloClient({
+    cache,
+    link,
   });
   return (
     <Provider store={store}>
@@ -36,10 +42,7 @@ export default function App({ Component, pageProps }) {
     </Provider>
   );
 }
-App.propTypes = {
-  Component: PropTypes.func,  // React.FunctionComponent
-  pageProps: PropTypes.object,
-};
+
 App.getInitialProps = async () => {
   console.log(`Needs server-side-rendered page with Automatic Static Optimization disabled for getting nonEmpty router.query in demo2\n
       https://nextjs.org/docs/advanced-features/automatic-static-optimization#how-it-works`);
