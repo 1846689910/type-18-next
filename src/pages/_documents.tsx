@@ -4,7 +4,7 @@ import { ServerStyleSheet } from "styled-components";
 
 // _document is only rendered on the server side and not on the client side
 // Event handlers like onClick can't be added to this file
-class _Document extends Document {
+export default class _Document extends Document {
   static async getInitialProps(ctx) {
     return withMuiSSR(ctx);
   }
@@ -72,4 +72,3 @@ async function withMuiSSR(ctx) {
     sheets.seal();
   }
 }
-export default _Document;
