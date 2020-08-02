@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { expect } from "chai";
 import { mount } from "enzyme";
 import { spy } from "sinon";
@@ -9,7 +9,7 @@ spy(Foo.prototype, "componentDidMount");
 
 describe("<Foo />", () => {
   it("calls componentDidMount", () => {
-    const wrapper = mount(<Foo />);
+    const wrapper = mount(<Foo/>);
     expect(wrapper.contains(<span>Hello World</span>)).to.equal(true);
     expect(
       wrapper.contains(

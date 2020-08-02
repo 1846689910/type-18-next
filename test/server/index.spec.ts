@@ -1,4 +1,5 @@
-import sinon from "sinon";
+import * as sinon from "sinon";
+import { expect } from "chai";
 describe("Sinon library", () => {
   it("fakes normally", async () => {
     const fn = sinon.fake.returns(123);
@@ -31,13 +32,13 @@ describe("Sinon library", () => {
   });
   it("stubs normally", () => {
     class Obj {
-      fn(num) {
+      fn(num: number):number {
         return num;
       }
     }
-    sinon.stub(Obj.prototype, "fn").callsFake(() => "hello");
+    sinon.stub(Obj.prototype, "fn").callsFake(() => 123);
     const obj = new Obj();
-    expect(obj.fn()).to.equal("hello");
+    expect(obj.fn(undefined)).to.equal(123);
   });
   it("mocks normally", () => {
     const obj = {
@@ -48,7 +49,7 @@ describe("Sinon library", () => {
     };
     const mock1 = sinon.mock(obj);
     mock1.expects("fn1").throws();
-    mock1.expects("fn").returns();
+    // mock1.expects("fn").returns();
     obj.fn(123);
     try {
       obj.fn1();
@@ -101,7 +102,7 @@ describe("Mocha Test", () => {
       expect({}).to.be.empty;
       expect({ a: 123 }).to.not.be.empty;
       expect({}).to.be.an("object");
-      expect(() => {}).to.be.a("function");
+      expect(() => ({})).to.be.a("function");
     });
   });
 });
