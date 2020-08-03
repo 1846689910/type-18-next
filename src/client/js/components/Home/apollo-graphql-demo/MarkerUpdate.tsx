@@ -36,7 +36,13 @@ const useStyles = makeStyles({
   }
 });
 
-const defaultFields = [
+type DefaultField = {
+  label: string;
+  key: string;
+  value: string;
+};
+
+const defaultFields: DefaultField[] = [
   { label: "Name", key: "name", value: "" },
   { label: "Coordinates", key: "coordinates", value: "" },
   { label: "Address", key: "address", value: "" },
