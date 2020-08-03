@@ -1,7 +1,9 @@
 import React, { useState, createContext, useEffect } from "react";
 import PropTypes from "prop-types";
-import { useQuery, useMutation, useApolloClient } from "@apollo/react-hooks";
+import { useQuery, useMutation, useApolloClient, ApolloClient } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+import L from "leaflet";
+import Landmark from "../../../models/Landmark";
 
 export const LANDMARKS = gql`
   query Landmark {
@@ -61,7 +63,31 @@ export const UPDATE_LANDMARK = gql`
   }
 `;
 
-const LocalContext = createContext();
+type LocalContextProps = {
+  map: L.Map | undefined;
+  setMap: (map: L.Map) => void;
+  baseLayer: L.Layer | undefined;
+  setBaseLayer: (layer: L.Layer) => void;
+  markers: L.Marker;
+  setMarkers: (x: L.Marker[]) => void;
+  landmarks: Landmark[];
+  apolloClient: ApolloClient<unknown> | undefined;
+  greeting: { hello: string };
+  selectedMarkerOption: { value: L.Marker, label: string };
+  setSelectedMarkerOption: (o: { value: L.Marker, label: string }) => void;
+  prevFields: { label?: string, key?: string, value: string }[];
+  setPrevFields: (prevFields: { label?: string, key: string, value: string }[] | boolean) => void;
+  showEditor: boolean;
+  setShowEditor: (showEditor: boolean) => void;
+  createLandmark: (param: { variables: { landmark: Landmark } }) => void;
+  createLandmarkData: Record<string, unknown>;
+  updateLandmark: (param: { variables: { id: string; landmark: Landmark } }) => void;
+  updateLandmarkData: Record<string, unknown>;
+  deleteLandmark: (param: { variables: { id: string } }) => void;
+  deleteLandmarkData: Record<string, unknown>;
+};
+
+const LocalContext = createContext({} as LocalContextProps);
 export default LocalContext;
 
 export const LocalProvider = ({ children }) => {

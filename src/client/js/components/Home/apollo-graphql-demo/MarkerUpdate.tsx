@@ -5,7 +5,7 @@ import {
   makeStyles,
   Button,
   TextField,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import LocalContext from "./LocalContext";
 import Landmark from "../../../models/Landmark";
@@ -16,24 +16,24 @@ const useStyles = makeStyles({
     zIndex: 99,
     top: "20px",
     left: "20px",
-    height: "500px"
+    height: "500px",
   },
   window: {
     height: "350px",
     background: "white",
     width: "100%",
     padding: "10px 0",
-    borderRadius: "10px"
+    borderRadius: "10px",
   },
   input: {
-    height: "10px"
+    height: "10px",
   },
   btns: {
-    marginTop: "10px"
+    marginTop: "10px",
   },
   btn: {
-    margin: "0 10px"
-  }
+    margin: "0 10px",
+  },
 });
 
 type DefaultField = {
@@ -47,8 +47,17 @@ const defaultFields: DefaultField[] = [
   { label: "Coordinates", key: "coordinates", value: "" },
   { label: "Address", key: "address", value: "" },
   { label: "Description", key: "description", value: "" },
-  { label: "Url", key: "url", value: "" }
+  { label: "Url", key: "url", value: "" },
 ];
+
+type ReducedFields = {
+  name: string;
+  coordinates: number[];
+  address: string;
+  description: string;
+  url: string;
+  id: string;
+};
 
 export default function MarkerUpdate() {
   const {
@@ -56,7 +65,7 @@ export default function MarkerUpdate() {
     setShowEditor,
     createLandmark,
     updateLandmark,
-    setPrevFields
+    setPrevFields,
   } = useContext(LocalContext);
   const [fields, setFields] = useState(prevFields || defaultFields);
   const isUpdate = !!prevFields;
@@ -66,11 +75,13 @@ export default function MarkerUpdate() {
     setFields([...fields]);
   };
   const isValid = () => {
-    const coords = fields.find(x => x.key === "coordinates").value.split(",");
+    const coords = fields.find((x) => x.key === "coordinates").value.split(",");
     return (
-      fields.filter(x => x.key !== "id").every(x => x.value.trim() !== "") &&
+      fields
+        .filter((x) => x.key !== "id")
+        .every((x) => x.value.trim() !== "") &&
       coords.length === 2 &&
-      coords.every(x => x.trim() !== "" && !isNaN(parseInt(x.trim())))
+      coords.every((x) => x.trim() !== "" && !isNaN(parseInt(x.trim())))
     );
   };
   const cancel = () => {
@@ -84,21 +95,21 @@ export default function MarkerUpdate() {
           p[v.key] = v.value
             .split(",")
             .slice(0, 2)
-            .map(x => parseFloat(x));
+            .map((x) => parseFloat(x));
         } else {
           p[v.key] = v.value;
         }
         return p;
       },
-      {}
-    );
+      {},
+    ) as ReducedFields;
     const landmark = new Landmark(
       name,
       coordinates,
       address,
       url,
       description,
-      id
+      id,
     );
     if (isUpdate) {
       updateLandmark({ variables: { id: landmark.id, landmark } });
@@ -124,7 +135,7 @@ export default function MarkerUpdate() {
           </Typography>
         </Grid>
         {fields
-          .filter(x => x.key !== "id")
+          .filter((x) => x.key !== "id")
           .map(({ label, value }, i) => (
             <Grid item container key={i} justify="center" alignItems="flex-end">
               <Grid item xs={10}>
@@ -135,9 +146,9 @@ export default function MarkerUpdate() {
                   type="text"
                   fullWidth
                   value={value}
-                  onChange={e => handleChange(e.target.value, i)}
+                  onChange={(e) => handleChange(e.target.value, i)}
                   inputProps={{
-                    className: classes.input
+                    className: classes.input,
                   }}
                 />
               </Grid>

@@ -5,7 +5,7 @@ export default class Landmark {
   url: string;
   description: string;
   id: string;
-  constructor(name, coordinates, address, url, description, id) {
+  constructor(name: string, coordinates: number[], address: string, url: string, description: string, id: string) {
     this.name = name;
     this.coordinates = coordinates;
     this.address = address;
