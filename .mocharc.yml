@@ -1,2 +1,9 @@
-require: ["@babel/register", "jsdom-global/register", "test/mocha.config.js"]
-spec: test/**/*.spec.js
+require:
+  [
+    "@babel/register",
+    "jsdom-global/register",
+    "ts-node/register",
+    "test/mocha.config.js",
+    "tsconfig.test.json",
+  ]
+spec: [test/**/*.spec.js, test/**/*.spec.ts, test/**/*.spec.tsx]
