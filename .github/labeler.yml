@@ -15,4 +15,6 @@ public:
 readme:
   - README.md
 dependencies:
-  - any: ['package.json', 'package-lock.json', 'yarn.lock']
+  - package.json
+  - package-lock.json
+  - yarn.lock
