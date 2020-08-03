@@ -3,12 +3,12 @@ export const ActionTypes = {
   SET_SELECT_OPTIONS_ACTION: "SET_SELECT_OPTIONS_ACTION",
   SET_SELECTED_OPTION_ACTION: "SET_SELECTED_OPTION_ACTION"
 };
-interface IAction<T>{
+export interface IAction<T>{
   type: string;
   data: T;
 }
 
-interface ISelectOption {
+export interface ISelectOption {
   value: string;
   label: string;
   color: string;
