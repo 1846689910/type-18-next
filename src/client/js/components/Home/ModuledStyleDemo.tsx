@@ -6,7 +6,7 @@ import stylus1 from "../../../styles/moduled/App.module.styl";
 import { Grid, styled } from "@material-ui/core";
 import MediaQueryContext from "../MediaQueryContext";
 
-const CenteredGrid: React.ElementType<{item: boolean}> = styled(Grid)({
+const CenteredGrid: React.ComponentType<{item: boolean}> = styled(Grid)({
   textAlign: "center",
 });
 
