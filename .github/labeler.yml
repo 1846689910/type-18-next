@@ -1,0 +1,14 @@
+client:
+  - src/client/*
+server:
+  - src/server/*
+pages:
+  - src/pages/*
+scripts:
+  - scripts/*
+browser-automation:
+  - browser-automation/*
+test:
+  - test/*
+public:
+  - public/*
