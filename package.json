@@ -95,8 +95,7 @@
     "selenium-webdriver": "^4.0.0-alpha.7",
     "shelljs": "^0.8.4",
     "styled-components": "^5.1.1",
-    "stylus": "^0.54.8",
-    "ts-node": "^8.10.2"
+    "stylus": "^0.54.8"
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
@@ -112,6 +111,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "mocha": "^8.0.1",
     "sinon": "^9.0.2",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.7"
   }
 }
