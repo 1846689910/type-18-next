@@ -3,10 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { Grid, Typography, Button, styled } from "@material-ui/core";
 import { setCounterAction } from "../../settings/actions";
 
-const Btn = styled(Button)({ fontWeight: "bold" });
+const Btn: React.ComponentType<{
+  variant: string;
+  color: string;
+  onClick: () => void;
+}> = styled(Button)({ fontWeight: "bold" });
 
 export default function ReduxStateDemo() {
-  const counter = useSelector(state => state.counter);
+  const counter = useSelector(
+    (state: { counter: { value: number } }) => state.counter,
+  );
   console.log(counter);
   const dispatch = useDispatch();
   return (
