@@ -1,14 +1,16 @@
-enhancement:
-  - src/client/*
+client:
+  - src/client/**/*
 server:
-  - src/server/*
+  - src/server/**/*
 pages:
-  - src/pages/*
+  - src/pages/**/*
 scripts:
-  - scripts/*
+  - scripts/**/*
 browser-automation:
-  - browser-automation/*
+  - browser-automation/**/*
 test:
-  - test/*
+  - test/**/*
 public:
-  - public/*
+  - public/**/*
+readme:
+  - README.md
