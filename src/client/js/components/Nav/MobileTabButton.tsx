@@ -87,8 +87,14 @@ type CustomMenuItemProps = {
   handleClick: (path: string) => void;
 };
 
-const CustomMenuItem = React.forwardRef<never, CustomMenuItemProps>(
-  ({ tab, handleClick }, ref) => {
+const CustomMenuItem = React.forwardRef<
+  React.ComponentPropsWithRef<React.ElementType>,
+  CustomMenuItemProps
+>(
+  (
+    { tab, handleClick }: CustomMenuItemProps,
+    ref: React.ComponentPropsWithRef<React.ElementType>,
+  ) => {
     const { label, path } = tab;
     return (
       <Fragment>
@@ -106,43 +112,49 @@ type CustomMenuItemWithSubmenuProps = {
   handleClick: (path: string) => void;
 };
 
-const CustomMenuItemWithSubmenu = React.forwardRef<
-  never,
-  CustomMenuItemWithSubmenuProps
->(({ tab, setAnchor: setUpperAnchor, handleClick: itemClick }, ref) => {
-  const router = useRouter();
-  const { label, routes } = tab;
-  const [anchor, setAnchor] = useState(null);
-  const handleClick = (fileId) => {
-    router.push(
-      routes.path,
-      routes.path.replace("[folderId]", "123").replace("[fileId]", fileId),
+const CustomMenuItemWithSubmenu = React.forwardRef(
+  (
+    {
+      tab,
+      setAnchor: setUpperAnchor,
+      handleClick: itemClick,
+    }: CustomMenuItemWithSubmenuProps,
+    ref: React.ComponentPropsWithRef<React.ElementType>,
+  ) => {
+    const router = useRouter();
+    const { label, routes } = tab;
+    const [anchor, setAnchor] = useState(null);
+    const handleClick = (fileId) => {
+      router.push(
+        routes.path,
+        routes.path.replace("[folderId]", "123").replace("[fileId]", fileId),
+      );
+      setAnchor(null);
+      setUpperAnchor(null);
+    };
+    return (
+      <Fragment>
+        <MenuItem ref={ref}>
+          <div onClick={() => itemClick(tab.path)}>{label}</div>
+          <IconButton size="small" onClick={(e) => setAnchor(e.target)}>
+            <ArrowRightIcon />
+          </IconButton>
+        </MenuItem>
+        {
+          <Menu
+            anchorEl={anchor}
+            open={Boolean(anchor)}
+            onClose={() => setAnchor(null)}
+          >
+            {routes.fileIds.map((x, i) => (
+              <MenuItem
+                key={i}
+                onClick={() => handleClick(x)}
+              >{`File${x}`}</MenuItem>
+            ))}
+          </Menu>
+        }
+      </Fragment>
     );
-    setAnchor(null);
-    setUpperAnchor(null);
-  };
-  return (
-    <Fragment>
-      <MenuItem ref={ref}>
-        <div onClick={() => itemClick(tab.path)}>{label}</div>
-        <IconButton size="small" onClick={(e) => setAnchor(e.target)}>
-          <ArrowRightIcon />
-        </IconButton>
-      </MenuItem>
-      {
-        <Menu
-          anchorEl={anchor}
-          open={Boolean(anchor)}
-          onClose={() => setAnchor(null)}
-        >
-          {routes.fileIds.map((x, i) => (
-            <MenuItem
-              key={i}
-              onClick={() => handleClick(x)}
-            >{`File${x}`}</MenuItem>
-          ))}
-        </Menu>
-      }
-    </Fragment>
-  );
-});
+  },
+);

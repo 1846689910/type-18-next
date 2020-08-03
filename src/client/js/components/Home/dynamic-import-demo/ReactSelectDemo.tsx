@@ -46,7 +46,7 @@ export function ReactSelectDemo() {
       dispatch(setSelectedOptionAction(_options.filter((_) => _.isFixed)));
     })();
   }, []);
-  const handleChange = (selected, action) => {
+  const handleChange = (selected, action) => {  // eslint-disable-line
     // eslint-disable-line
     dispatch(setSelectedOptionAction(selected));
   };
