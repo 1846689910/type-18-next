@@ -1,4 +1,4 @@
-client:
+enhancement:
   - src/client/*
 server:
   - src/server/*
