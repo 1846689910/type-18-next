@@ -1,12 +1,5 @@
 import React, { useRef, useEffect, useContext, Fragment } from "react";
-import PropTypes from "prop-types";
 import { renderToString } from "react-dom/server";
-// import "leaflet/dist/images/marker-icon-2x.png";
-// import "leaflet/dist/images/marker-icon.png";
-// import "leaflet/dist/images/layers-2x.png";
-// import "leaflet/dist/images/layers.png";
-// import "leaflet/dist/images/marker-shadow.png";
-// import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { makeStyles } from "@material-ui/core";
 import LocalContext from "./LocalContext";
@@ -70,7 +63,7 @@ export default function Map() {
  * @param {HTMLElement} dom
  * @returns {L.Map}
  */
-function initMap(dom) {
+function initMap(dom): L.Map {
   return L.map(dom, { zoomControl: false }).setView(initLatLng, initZoom);
 }
 /**
@@ -112,7 +105,7 @@ function configureMarkers(map, landmarks, setSelectedMarkerOption) {
   });
 }
 
-function Popup({ name, address, description, url }) {
+function Popup({ name, address, description, url }: PopupProps) {
   const { popHeader, popContent } = useStyles();
   return (
     <div>
@@ -132,9 +125,9 @@ function Popup({ name, address, description, url }) {
     </div>
   );
 }
-Popup.propTypes = {
-  name: PropTypes.string,
-  address: PropTypes.string,
-  description: PropTypes.string,
-  url: PropTypes.string
+type PopupProps = {
+  name: string;
+  address: string;
+  description: string;
+  url: string;
 };
