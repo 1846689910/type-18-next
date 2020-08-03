@@ -11,7 +11,7 @@ export const initialState = {
   },
 };
 
-interface IState<T> {
+export interface IState<T> {
   value: T;
 }
 
