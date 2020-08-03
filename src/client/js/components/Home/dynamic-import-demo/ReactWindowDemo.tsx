@@ -22,7 +22,7 @@ const Row = ({ data, index, style }: RowProps) => {  // eslint-disable-line
   return <MenuItem style={style}>Row {index}</MenuItem>;
 };
 
-export default () => {
+export default function ReactWindowDemo() {
   const classes = useStyles();
   return (
     <Grid className={classes.outer} container justify="center">
@@ -40,4 +40,4 @@ export default () => {
       </Grid>
     </Grid>
   );
-};
+}
