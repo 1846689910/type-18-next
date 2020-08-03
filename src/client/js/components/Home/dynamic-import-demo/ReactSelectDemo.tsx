@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import {
   setSelectOptionsAction,
   setSelectedOptionAction,
@@ -13,10 +12,10 @@ const useStyles = makeStyles({
   outer: {
     margin: "10px 0",
   },
-  label: (attr) => ({
+  label: (attr: { color: string }) => ({
     color: attr.color,
   }),
-  optionFiber: (attr) => ({
+  optionFiber: (attr: { color: string; isDisabled: boolean }) => ({
     fontSize: "14px",
     color: attr.isDisabled ? "gray" : attr.color,
   }),
@@ -47,7 +46,8 @@ export function ReactSelectDemo() {
       dispatch(setSelectedOptionAction(_options.filter((_) => _.isFixed)));
     })();
   }, []);
-  const handleChange = (selected, action) => {  // eslint-disable-line
+  const handleChange = (selected, action) => {
+    // eslint-disable-line
     dispatch(setSelectedOptionAction(selected));
   };
   return (
@@ -77,7 +77,18 @@ export function ReactSelectDemo() {
     </Grid>
   );
 }
-function CustomMultiValueLabel({ children, ...props }) {
+
+type CustomMultiValueLabelProps = {
+  children: React.ReactElement | React.ReactElement[];
+  data: {
+    color: string;
+    isDisabled: boolean;
+  };
+};
+function CustomMultiValueLabel({
+  children,
+  ...props
+}: CustomMultiValueLabelProps) {
   const classes = useStyles(props.data);
   return (
     <components.MultiValueLabel {...props}>
@@ -85,16 +96,15 @@ function CustomMultiValueLabel({ children, ...props }) {
     </components.MultiValueLabel>
   );
 }
-CustomMultiValueLabel.propTypes = {
-  children: PropTypes.string,
-  data: PropTypes.object,
-  props: PropTypes.shape({
-    data: PropTypes.shape({
-      color: PropTypes.string,
-    }),
-  }),
+
+type CustomOptionProps = {
+  children: React.ReactElement | React.ReactElement[];
+  data: {
+    color: string;
+    isDisabled: boolean;
+  };
 };
-function CustomOption({ children, ...props }) {
+function CustomOption({ children, ...props }: CustomOptionProps) {
   const classes = useStyles(props.data);
   return (
     <components.Option {...props}>
@@ -109,8 +119,3 @@ function CustomOption({ children, ...props }) {
     </components.Option>
   );
 }
-CustomOption.propTypes = {
-  children: PropTypes.string,
-  data: PropTypes.object,
-  props: PropTypes.object,
-};

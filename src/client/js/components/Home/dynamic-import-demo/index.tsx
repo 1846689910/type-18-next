@@ -11,7 +11,7 @@ const ReactSelectDemo = dynamic(
         {"<ReactSelectDemo/>"} is loading ...
       </Typography>
     ),
-  }
+  },
 );
 const ReactWindowDemo = dynamic(() => import("./ReactWindowDemo"), {
   loading: () => (

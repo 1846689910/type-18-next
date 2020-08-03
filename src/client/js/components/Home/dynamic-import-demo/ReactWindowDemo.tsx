@@ -1,6 +1,5 @@
 import React from "react";
 import { FixedSizeList } from "react-window";
-import PropTypes from "prop-types";
 import { Grid, makeStyles, MenuItem } from "@material-ui/core";
 
 const useStyles = makeStyles({
@@ -13,13 +12,14 @@ const useStyles = makeStyles({
   }
 });
 
-const Row = ({ data, index, style }) => {  // eslint-disable-line
-  return <MenuItem style={style}>Row {index}</MenuItem>;
+type RowProps = {
+  data?: Record<string, unknown>;
+  index: number;
+  style: Record<string, string>;
 };
-Row.propTypes = {
-  data: PropTypes.object,
-  index: PropTypes.number,
-  style: PropTypes.object
+
+const Row = ({ data, index, style }: RowProps) => {  // eslint-disable-line
+  return <MenuItem style={style}>Row {index}</MenuItem>;
 };
 
 export default () => {
