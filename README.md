@@ -124,25 +124,29 @@ define the end points in `src/pages` and create file like `alive.jsx`, which wil
 
 ### **stylesheets**
 
+- stylesheet preprocessors declaration
+
+create a file `src/client/styles/style-externals.d.ts` for declare `.less`, `.styl` and other stylesheet type. Then include the file in `tsconfig.json`
+
 - global stylesheet(CSS, SASS/SCSS, LESS, STYLUS)
 
-import the global stylesheet in `src/pages/_app.jsx`, like
+import the global stylesheet in `src/pages/_app.tsx`, like
 
-```jsx
+```tsx
 import "../client/styles/App.css";
 ```
 
 - local stylesheet(stylesheets with css modules applied)
 
-import the moduled stylesheet in needed component, like in `src/client/js/components/Home/ModuledStyleDemo.jsx`
+import the moduled stylesheet in needed component, like in `src/client/js/components/Home/ModuledStyleDemo.tsx`
 
-```jsx
+```tsx
 import css1 from "../../../styles/moduled/App.module.css";
 ```
 
 - css in header
 
-import the external css CDN in `src/client/js/components/Nav/ForNextJsCustomHead.jsx`
+import the external css CDN in `src/client/js/components/Nav/ForNextJsCustomHead.tsx`
 
 Notes:
 - for issue cannot enable pure css and moduled css simultaneously, maybe check discussion [here](https://github.com/vercel/next.js/discussions/14946)
