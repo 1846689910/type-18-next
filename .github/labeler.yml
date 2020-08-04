@@ -14,3 +14,7 @@ public:
   - public/**/*
 readme:
   - README.md
+dependencies:
+  - package.json
+  - package-lock.json
+  - yarn.lock
