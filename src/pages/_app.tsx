@@ -8,7 +8,7 @@ import "../client/styles/App.css"; // TODO: after using `withCss`, Link routing 
 import "../client/styles/App.scss";
 import "../client/styles/App.less";
 import "../client/styles/App.styl";
-import {ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { MediaQueryProvider } from "../client/js/components/MediaQueryContext";
 
@@ -23,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const cache = new InMemoryCache();
   const link = createHttpLink({
     uri: graphqlUri,
+    fetch
   });
   const apolloClient = new ApolloClient({
     cache,
