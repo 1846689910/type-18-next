@@ -8,7 +8,7 @@ import "../client/styles/App.css"; // TODO: after using `withCss`, Link routing 
 import "../client/styles/App.scss";
 import "../client/styles/App.less";
 import "../client/styles/App.styl";
-import {ApolloClient, InMemoryCache, createHttpLink} from "@apollo/client";
+import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { MediaQueryProvider } from "../client/js/components/MediaQueryContext";
 
@@ -19,10 +19,15 @@ type AppProps = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const store = useStore();
-  const graphqlUri = "/graphql"; // default value
+  console.log(process.env.NODE_ENV);
+  const isDev = process.env.NODE_ENV === "development";
+  const graphqlUri = isDev
+    ? "/graphql"
+    : "https://micro-bus.vercel.app/_api/type-18-next"; // default value
   const cache = new InMemoryCache();
   const link = createHttpLink({
     uri: graphqlUri,
+    fetch,
   });
   const apolloClient = new ApolloClient({
     cache,
