@@ -19,11 +19,15 @@ type AppProps = {
 
 export default function App({ Component, pageProps }: AppProps) {
   const store = useStore();
-  const graphqlUri = "/graphql"; // default value
+  console.log(process.env.NODE_ENV);
+  const isDev = process.env.NODE_ENV === "development";
+  const graphqlUri = isDev
+    ? "/graphql"
+    : "https://micro-bus.vercel.app/_api/type-18-next"; // default value
   const cache = new InMemoryCache();
   const link = createHttpLink({
     uri: graphqlUri,
-    fetch
+    fetch,
   });
   const apolloClient = new ApolloClient({
     cache,
