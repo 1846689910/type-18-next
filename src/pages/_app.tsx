@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const isDev = process.env.NODE_ENV === "development";
   const graphqlUri = isDev
     ? "/graphql"
-    : "https://micro-bus-dpjqpau81.vercel.app/api/type-18-next"; // default value
+    : "https://micro-bus.vercel.app/api/type-18-next"; // default value
   const cache = new InMemoryCache();
   const link = createHttpLink({
     uri: graphqlUri,
