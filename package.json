@@ -93,7 +93,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "selenium-webdriver": "^4.0.0-alpha.7",
-    "shelljs": "^0.8.4",
+    "shelljs": "^0.8.5",
     "styled-components": "^5.1.1",
     "stylus": "^0.54.8"
   },
